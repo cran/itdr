@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>itdr-vignette</title>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">itdr-vignette</h1>
+
+
+
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>“itdr” is a system for estimating a basis of the central and central mean subspaces in regression by using integral transformation methods. This “vignette” demonstrate the usage of functions in <code>itdr</code> package over “automobile” and “PDB” datasets.</p>
+</div>
+<div id="chapter-1-installation" class="section level2">
+<h2>Chapter 1: Installation</h2>
+<div id="install-itdr-package" class="section level3">
+<h3>1.1: Install <code>itdr</code> package</h3>
+<p>Installation can be done for <code>itdr</code> R package in three ways.</p>
+<ul>
+<li>From the Comprehensive R Archive Network (CRAN): Use <code>install.packages()</code> function in R. Then, import <code>itdr</code> package into working session using <code>library()</code> function. That is,</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;itdr&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(itdr)</a></code></pre></div>
+<ul>
+<li>From binary source package: Use <code>intall.package()</code> function in R. Then, import <code>itdr</code> package into working session using <code>library()</code> function. That is,</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;~/itdr.zip&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(itdr)</a></code></pre></div>
+<ul>
+<li>From GitHub: Use <code>install_github()</code> function in R <code>devtools</code> package as follows.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">install_github</span>(<span class="st">&quot;TharinduPDeAlwis/itdr&quot;</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">library</span>(itdr)</a></code></pre></div>
+</div>
+</div>
+<div id="chpater-2-functions-related-to-the-fourier-and-convolution-transformation-methods-to-estimate-sufficient-dimension-reduction-sdr-subspaces" class="section level2">
+<h2>Chpater 2: Functions related to the Fourier and Convolution transformation methods to estimate Sufficient Dimension Reduction (SDR) subspaces</h2>
+<p>In this section, we describe the functions in <code>itdr</code> package which use Fourier transformation method to estimate sufficient dimension reduction (SDR) subspaces in regression. We only demonstrate the Fourier transformation method. However, by passing the argument <code>method=&quot;CM&quot;</code> to the <code>itdr()</code> function, convolution transformation method can be obtained.</p>
+<p>Before estimating the SDR subspaces, it is required to estimate the dimension (d) of the SDR subspace and tunning parameters <code>sw2</code>, and <code>st2</code>. In Section 2.1, the estimation of dimension (d) is demonstrated. The estimation of the tuning parameter <code>sw2</code> for both subspaces, i.e., for the central subspace (CS) and the central mean subspace (CMS), is explained in Section 2.2.1. Moreover, the estimation of <code>st2</code> for the central subspace (CS) is explained in Section 2.2.2. Finally, the use of <code>itdr()</code> function to estimate the central subspace is demonstrated in Section 2.3.</p>
+<div id="estimating-the-dimension-d-of-sufficient-dimension-reduction-sdr-subspaces" class="section level3">
+<h3>2.1: Estimating the dimension (d) of sufficient dimension reduction (SDR) subspaces</h3>
+<p>Bootstrap estimation procedure is used to estimate the unknown dimension (d) of sufficient dimension reduction subspaces, for more details see Zhu and Zeng (2006). The <code>d.boots()</code> function can be used to estimate the dimension (d). Now, let’s estimate the dimension <code>d</code> of the central subspace of the <code>automobile</code> dataset, here we use the response variable y, and the predictor variables x as mentioned in Zhu and Zeng (2006). We need to pass the arguments to the <code>d.boots()</code> function as <code>space=&quot;pdf&quot;</code> to estimate the CS, <code>xdensity=&quot;normal&quot;</code> for assuming normal density for the predictors, and <code>method=&quot;FM&quot;</code> for useing the Fourier transformation method.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#Install package</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(itdr)</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co"># Use dataset available in itdr package</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">data</span>(automobile)</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">head</span>(automobile)</a>
+<a class="sourceLine" id="cb4-6" title="6">automobile.na=<span class="kw">na.omit</span>(automobile)</a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co"># prepare response and predictor variables </span></a>
+<a class="sourceLine" id="cb4-8" title="8">auto_y=<span class="kw">log</span>(automobile.na[,<span class="dv">26</span>])</a>
+<a class="sourceLine" id="cb4-9" title="9">auto_xx=automobile.na[,<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)]</a>
+<a class="sourceLine" id="cb4-10" title="10">auto_x=<span class="kw">scale</span>(auto_xx) <span class="co"># Standardize the predictors</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co"># call to the d.boots() function with required arguments</span></a>
+<a class="sourceLine" id="cb4-12" title="12">d_est=<span class="kw">d.boots</span>(auto_y,auto_x,<span class="dt">plot=</span><span class="ot">TRUE</span>,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb4-13" title="13">auto_d=d_est<span class="op">$</span>d.hat</a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co"># Estimated d_hat=2</span></a></code></pre></div>
+<p>Here, the estimate of the dimension of the central subspace for <code>automobile</code> data is 2, i.e., d_hat=2.</p>
+</div>
+<div id="estimating-tuning-parameters-and-bandwidth-parameters-for-gaussian-kernel-density-estimation" class="section level3">
+<h3>2.2: Estimating tuning parameters and bandwidth parameters for Gaussian kernel density estimation</h3>
+<p>There are two tuning parameters that need to be estimated in the process of estimating SDR subspaces using the Fourier method: namely <code>sw2</code> and <code>st2</code>. The <code>sw2</code> required in both the central mean (CMS) and the central subspace (CS). However, the <code>st2</code> required only in the central subspace. The code in Section 2.2.1 demonstrates the use of function <code>wx()</code> to estimate the tunning parameter <code>sw2</code>, and the use of the function <code>wy()</code> to estimate the tunning parameter <code>st2</code> is described in Section 2.2.2.</p>
+</div>
+<div id="estimate-sw2" class="section level3">
+<h3>2.2.1: Estimate <code>sw2</code></h3>
+<p>To estimate the tuning parameter <code>sw2</code>, we can use <code>wx()</code> function with the subspace option either <code>space=&quot;pdf&quot;</code> for the CS and <code>space=&quot;mean&quot;</code> for the CMS. During the estimation process, the other parameters are fixed. The following R code chunk demonstrates the estimation of <code>sw2</code> for the central subspace.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">auto_d=<span class="dv">2</span> <span class="co">#The estimated value from Section 2.1</span></a>
+<a class="sourceLine" id="cb5-2" title="2">auto_sw2=<span class="kw">wx</span>(auto_y,auto_x,auto_d,<span class="dt">wx_seq=</span><span class="kw">seq</span>(<span class="fl">0.05</span>,<span class="dv">1</span>,<span class="dt">by=</span><span class="fl">0.01</span>),<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3">auto_sw2<span class="op">$</span>wx.hat <span class="co"># we get the estimator for sw2 as 0.14</span></a></code></pre></div>
+</div>
+<div id="estimate-st2" class="section level3">
+<h3>2.2.2: Estimate <code>st2</code></h3>
+<p>To estimate the tuning parameter <code>st2</code>, we can use <code>wy()</code> function. Here, the other parameters are fixed. Notice that we do not need to specify the <code>space</code>, because the tuning parameter <code>st2</code> only required for the central subspace (CS).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">auto_d=<span class="dv">2</span> <span class="co"># Estimated value from Section 2.1</span></a>
+<a class="sourceLine" id="cb6-2" title="2">auto_st2=<span class="kw">wy</span>(auto_y,auto_x,auto_d,<span class="dt">wx=</span><span class="fl">0.1</span>,<span class="dt">wy_seq=</span><span class="kw">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dt">by=</span><span class="fl">0.1</span>),<span class="dt">xdensity=</span><span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">auto_st2<span class="op">$</span>wy.hat <span class="co"># we get the estimator for st2=0.9 </span></a></code></pre></div>
+</div>
+<div id="estimate-the-bandwidth-h-of-the-gaussian-kernel-density-function" class="section level3">
+<h3>2.2.3: Estimate the bandwidth (<code>h</code>) of the Gaussian kernel density function</h3>
+<p>If the distribution function of the predictor variables is unknown, then we use the Gaussian kernel density estimation to approximate the density function of the predictor variables. However, the bandwidth parameter needs to be estimated when <code>xdensity=&quot;kernel&quot;</code> is used. The <code>wh()</code> function uses the bootstrap estimator to estimate the bandwidth of the Gaussian kernel density estimation.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">h_hat=<span class="kw">wh</span>(auto_y,auto_x,auto_d,<span class="dt">wx=</span><span class="dv">5</span>,<span class="dt">wy=</span><span class="fl">0.1</span>,<span class="dt">wh_seq=</span><span class="kw">seq</span>(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">B=</span><span class="dv">50</span>,<span class="dt">space =</span> <span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;kernel&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co">#Bandwidth estimator for Gaussian kernel density estimation for central subspace</span></a>
+<a class="sourceLine" id="cb7-3" title="3">h_hat<span class="op">$</span>h.hat <span class="co">#we have the estimator as h_hat=1</span></a></code></pre></div>
+</div>
+<div id="estimate-sdr-subspaces" class="section level3">
+<h3>2.3: Estimate SDR subspaces</h3>
+<p>We have described the estimation procedure of the tunning parameters in the Fourier method in Sections 2.1-2.2. Now, we are ready to estimate the SDR subspaces. Zhu and Zeng (2006) used the Fourier method to facilitate the estimation of the SDR subspaces when the predictors are following a multivariate normal distribution. However, when the predictor variables is following an elliptical distribution or more generally when the distribution of the predictors is unknow, the predictors’ distribution function is approximated by using the Gaussian kernel density estimation (Zeng and Zhu, 2010). The <code>itdr()</code> function can be used to estimate the SDR subspaces under <code>FM</code> method as follows. Since the default setting of the <code>itdr()</code> function has <code>method=&quot;FM&quot;</code>, It is optional to specify the method as “FM”.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(itdr)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">data</span>(automobile)</a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">head</span>(automobile)</a>
+<a class="sourceLine" id="cb8-4" title="4">df=<span class="kw">cbind</span>(automobile[,<span class="kw">c</span>(<span class="dv">26</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)])</a>
+<a class="sourceLine" id="cb8-5" title="5">dff=<span class="kw">as.matrix</span>(df)</a>
+<a class="sourceLine" id="cb8-6" title="6">automobi=dff[<span class="kw">complete.cases</span>(dff),]</a>
+<a class="sourceLine" id="cb8-7" title="7">d=<span class="dv">2</span>; <span class="co"># Estimated value from Section 2.1</span></a>
+<a class="sourceLine" id="cb8-8" title="8">wx=.<span class="dv">14</span> <span class="co"># Estimated value from Section 2.2.1</span></a>
+<a class="sourceLine" id="cb8-9" title="9">wy=.<span class="dv">9</span>  <span class="co"># Estimated value from Section 2.2.2</span></a>
+<a class="sourceLine" id="cb8-10" title="10">wh=<span class="fl">1.5</span>  <span class="co"># Estimated value from Section 2.2.3</span></a>
+<a class="sourceLine" id="cb8-11" title="11">p=<span class="dv">13</span>  <span class="co"># Estimated value from Section 2.3</span></a>
+<a class="sourceLine" id="cb8-12" title="12">y=automobi[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb8-13" title="13">x=automobi[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">14</span>)]</a>
+<a class="sourceLine" id="cb8-14" title="14">xt=<span class="kw">scale</span>(x)</a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#Distribution of the predictors is a normal distribution</span></a>
+<a class="sourceLine" id="cb8-16" title="16">fit.F_CMS=<span class="kw">itdr</span>(y,xt,d,wx,wy,wh,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="kw">round</span>(fit.F_CMS<span class="op">$</span>eta_hat,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb8-18" title="18"></a>
+<a class="sourceLine" id="cb8-19" title="19"><span class="co">#Distribution of the predictors is a unknown (using kernel method)</span></a>
+<a class="sourceLine" id="cb8-20" title="20">fit.F_CMS=<span class="kw">itdr</span>(y,xt,d,wx,wy,wh,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;kernel&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
+<a class="sourceLine" id="cb8-21" title="21"><span class="kw">round</span>(fit.F_CMS<span class="op">$</span>eta_hat,<span class="dv">2</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="chapter-3-functions-related-with-estimating-the-central-mean-subspace-using-iterative-hessian-transformation-iht" class="section level2">
+<h2>Chapter 3: Functions related with estimating the central mean subspace using Iterative Hessian Transformation (IHT)</h2>
+<p>The <code>itdr()</code> function also can be used to estimate the central mean subspace in regression by using iterative Hessian transformation (IHT) method as described in the following R chunk. Notice that the inputs are the method of estimation (<code>method=iht</code>), the response vector (y), design matrix of the predictors (x), and the dimension (d) of the CMS.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">d=<span class="dv">2</span></a>
+<a class="sourceLine" id="cb9-2" title="2">fit.iht_CMS=<span class="kw">itdr</span>(y,xt,d,<span class="dt">method=</span><span class="st">&quot;iht&quot;</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3">fit.iht_CMS<span class="op">$</span>eta_hat</a></code></pre></div>
+</div>
+<div id="chapter-4-functions-related-with-estimating-the-central-subspace-in-regression-using-fourier-transformation-approach-on-inverse-dimension-reduction" class="section level2">
+<h2>Chapter 4: Functions related with estimating the central subspace in regression using Fourier transformation approach on inverse dimension reduction</h2>
+<p>In this section, we demonstrate the functions in <code>itdr</code> package, which related to the Fourier transformation approach on inverse dimension reduction. In Section 4.1, we demonstrate the use of function to estimate the dimension of the central subspace using the Fourier transformation approach on inverse dimension reduction. The estimation of the CS is described in Section 4.2.</p>
+<div id="estimating-d" class="section level3">
+<h3>4.1: Estimating d</h3>
+<p>The estimation of the dimension of the CS can be achieved using <code>d.test()</code> function which gives outputs of three different p-values for three different test statistics; Cook test statistic (Cook, 1998 and Weng and Yin, 2018), Scaled test statistic (Bentler and Xie, 2000), and Adjusted test statistic (Bentler and Xie, 2000). Suppose <code>m</code> is the candidate dimension of the CS to be tested <code>(H_0: d=m)</code>, then, the following R code shows the testing a candidate value <code>m</code> (&lt;p) for dimension of the CS of the planning database (PDB).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">library</span>(itdr)</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">data</span>(PDB)</a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="kw">colnames</span>(PDB)=<span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb10-4" title="4">p=<span class="dv">15</span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></a>
+<a class="sourceLine" id="cb10-6" title="6">df=PDB[,<span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</a>
+<a class="sourceLine" id="cb10-7" title="7">dff=<span class="kw">as.matrix</span>(df)</a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="co">#remove the NA rows</span></a>
+<a class="sourceLine" id="cb10-9" title="9">planingdb=dff[<span class="kw">complete.cases</span>(dff),]</a>
+<a class="sourceLine" id="cb10-10" title="10"></a>
+<a class="sourceLine" id="cb10-11" title="11">y=planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></a>
+<a class="sourceLine" id="cb10-12" title="12">x=planingdb[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span>(p<span class="op">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></a>
+<a class="sourceLine" id="cb10-13" title="13">x=x<span class="fl">+0.5</span></a>
+<a class="sourceLine" id="cb10-14" title="14"><span class="co"># desing matrix after tranformations</span></a>
+<a class="sourceLine" id="cb10-15" title="15">xt=<span class="kw">cbind</span>(x[,<span class="dv">1</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="op">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="op">^</span>(.<span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb10-16" title="16">x[,<span class="dv">6</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="op">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="op">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="op">^</span>(.<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb10-17" title="17">x[,<span class="dv">11</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="op">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="op">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="op">^</span>(.<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb10-18" title="18">m=<span class="dv">1</span></a>
+<a class="sourceLine" id="cb10-19" title="19">W=<span class="kw">sapply</span>(<span class="dv">50</span>,rnorm)</a>
+<a class="sourceLine" id="cb10-20" title="20"><span class="co">#run the hypothsis tests</span></a>
+<a class="sourceLine" id="cb10-21" title="21"><span class="kw">d.test</span>(y,x,m)</a></code></pre></div>
+</div>
+<div id="estimating-central-subspace" class="section level3">
+<h3>4.2: Estimating central subspace</h3>
+<p>After selecting the dimension of the CS as described in Section 4.1, then, an estimator for the CS can be obtained by using <code>invFM()</code> function. The following R chunk shows the use of <code>invFM()</code> to estimate the CS for planning database (PDB).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(itdr)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">data</span>(PDB)</a>
+<a class="sourceLine" id="cb11-3" title="3"><span class="kw">colnames</span>(PDB)=<span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb11-4" title="4">p=<span class="dv">15</span></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></a>
+<a class="sourceLine" id="cb11-6" title="6">df=PDB[,<span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</a>
+<a class="sourceLine" id="cb11-7" title="7">dff=<span class="kw">as.matrix</span>(df)</a>
+<a class="sourceLine" id="cb11-8" title="8"><span class="co">#remove the NA rows</span></a>
+<a class="sourceLine" id="cb11-9" title="9">planingdb=dff[<span class="kw">complete.cases</span>(dff),]</a>
+<a class="sourceLine" id="cb11-10" title="10"></a>
+<a class="sourceLine" id="cb11-11" title="11">y=planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></a>
+<a class="sourceLine" id="cb11-12" title="12">x=planingdb[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span>(p<span class="op">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></a>
+<a class="sourceLine" id="cb11-13" title="13">x=x<span class="fl">+0.5</span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="co"># desing matrix after tranformations give in Weng and Yin, (2018).</span></a>
+<a class="sourceLine" id="cb11-15" title="15">xt=<span class="kw">cbind</span>(x[,<span class="dv">1</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="op">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="op">^</span>(.<span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb11-16" title="16">x[,<span class="dv">6</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="op">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="op">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="op">^</span>(.<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb11-17" title="17">x[,<span class="dv">11</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="op">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="op">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="op">^</span>(.<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb11-18" title="18">W=<span class="kw">sapply</span>(<span class="dv">50</span>,rnorm)</a>
+<a class="sourceLine" id="cb11-19" title="19">d=<span class="dv">1</span> <span class="co"># estimated dimension of the CS from Section 4.1</span></a>
+<a class="sourceLine" id="cb11-20" title="20">betahat &lt;-<span class="kw">invFM</span>(xt,y,d,W,F)<span class="op">$</span>beta <span class="co"># estimated basis</span></a>
+<a class="sourceLine" id="cb11-21" title="21">betahat</a></code></pre></div>
+</div>
+</div>
+<div id="acknowledgment" class="section level2">
+<h2>Acknowledgment</h2>
+<p>The codes for the Fourier transformation and the convolution transformation methods are adapted from the codes provided by Zhu and Zeng (2006). Moreover, those for the elliptically contoured distributed variables and the kernel density estimation methods are essentially a modification of the program provided by Zeng and Zhu (2010). The code for Fourier transforms approach for the inverse dimension reduction method is adapted from the code provided by Weng and Yin (2018).</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li><p>Bentler, P.M., and Xie, J. (2000). Corrections to Test Statistics in Principal Hessian Directions. <em>Statistics and Probability Letters</em>. 47, 381-389.</p></li>
+<li><p>Cook, R. D. (1998). <em>Regression Graphics: Ideas for Studying Regressions Through Graphics</em>.Wiley.</p></li>
+<li><p>Cook R. D., and Li, B., (2002). Dimension Reduction for Conditional Mean in Regression. <em>The Annals of Statitics</em>, 30, 455-474.</p></li>
+<li><p>Weng J. and Yin X. (2018). Fourier Transform Approach for Inverse Dimension Reduction Method. <em>Journal of Nonparametric Statistics</em>. 30, 4, 1029-0311.</p></li>
+<li><p>Zeng P. and Zhu Y. (2010). An Integral Transform Method for Estimating the Central Mean and Central Subspaces. <em>Journal of Multivariate Analysis</em>. 101, 271–290.</p></li>
+<li><p>Zhu Y. and Zeng P. (2006). Fourier Methods for Estimating the Central Subspace and Central Mean Subspace in Regression. <em>Journal of the American Statistical Association</em>. 101, 1638–1651.</p></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
