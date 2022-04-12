@@ -19,7 +19,7 @@ itdr(y,x,d,wx=0.1,wy=1,wh=1.5,space="mean",xdensity="normal",method="FM")
 
 \item{wh}{(default 1.5). The bandwidth of the kernel density estimation function.}
 
-\item{space}{(default ``mean''). The defalult is ``mean'' for the central mean subspace. Other option is ``pdf'' for estimating the central subspace.}
+\item{space}{(default ``mean''). The default is ``mean'' for the central mean subspace. Other option is ``pdf'' for estimating the central subspace.}
 
 \item{xdensity}{(default ``normal''). Density function of the predictor variables. 
 If ``normal'' then predictor variables are coming from a multivariate normal distribution. 
@@ -44,24 +44,24 @@ in regression.
 }
 \details{
 Let m(\bold{x})=E[y|\bold{X}=\bold{x}]. Then, integral transformation of gradient of the mean function m(\bold{x}) is defined as
-\deqn{\bold{\psi}(\bold{\omega}) =\int \frac{\partial}{\partial \bold{x}}m(\bold{x}) W(\bold{x},\bold{\omega})f(\bold{x})d\bold{x},}
-where \eqn{W(\bold{x},\bold{\omega})} is said to be a nondegenerate kernel function. Set \eqn{W(\bold{x},\bold{\omega})=\exp(i\bold{\omega}^T\bold{x})} for 
-Fourier transformation (FM) method  and \eqn{W(\bold{x},\bold{\omega})=H(\bold{x}-\bold{\omega})=(2\pi\sigma_w^2)^{-p/2}\exp(-(\bold{x}-\bold{\omega})^T(\bold{x}-\bold{\omega})/(2\sigma_w^2))} for convolution transformation (CM) method  
-where \eqn{W(\bold{x},\bold{\omega})} is an absolutely integrable function. 
+\deqn{\boldsymbol\psi(\boldsymbol\omega) =\int \frac{\partial}{\partial \textbf{x}}m(\textbf{x}) W(\textbf{x},\boldsymbol\omega)f(\textbf{x})d\textbf{x},}
+where \eqn{W(\textbf{x},\boldsymbol\omega)} is said to be a non degenerate kernel function. Set \eqn{W(\textbf{x},\boldsymbol\omega)=\exp(i\boldsymbol\omega^T\textbf{x})} for 
+Fourier transformation (FM) method  and \eqn{W(\textbf{x},\boldsymbol\omega)=H(\textbf{x}-\boldsymbol\omega)=(2\pi\sigma_w^2)^{-p/2}\exp(-(\textbf{x}-\boldsymbol{\omega})^T(\textbf{x}-\boldsymbol\omega)/(2\sigma_w^2))} for convolution transformation (CM) method  
+where \eqn{W(\textbf{x},\boldsymbol\omega)} is an absolutely integrable function. 
 The candidate matrix to estimate the central mean subspace (CMS),
-\deqn{\bold{M}_{CMS}=\int \bold{\psi}(\bold{\omega}) \bold{\psi}(\bold{\omega})^T K(\bold{\omega})d\bold{\omega}, }
-where \eqn{K(\bold{\omega})=(2\pi \sigma_w^2)^{-p/2}\exp{(-||\bold{\omega}||}/2\sigma_w^2)} under 'FM', and \eqn{K(\bold{\omega})=1} under `CM`. 
+\deqn{\textbf{M}_{CMS}=\int \boldsymbol\psi(\boldsymbol\omega) \boldsymbol\psi(\boldsymbol\omega)^T K(\boldsymbol\omega)d\boldsymbol\omega, }
+where \eqn{K(\boldsymbol{\omega})=(2\pi \sigma_w^2)^{-p/2}\exp{(-||\boldsymbol{\omega}||}/2\sigma_w^2)} under 'FM', and \eqn{K(\boldsymbol{\omega})=1} under `CM`. 
 Here, \eqn{\sigma_w^2} is a tuning parameter and it refers as "tuning parameter for the predictor variables" and denoted by `wx` in all functions.
 
 
 Let \eqn{\{T_v(y)=H(y,v),~ for~~ y,v\in \mathcal{R}\}} be the family of transformations for the response variable. That is, \eqn{v \in \mathcal{R}}, the mean 
-response of \eqn{T_v(y)} is \eqn{m(\bold{\omega},v)=E[H(y,v)| \bold{X}=\bold{x}]}. Then, integral transformation for the gradient of
-\eqn{m(\bold{\omega},v)} is defined as
-\deqn{\bold{\psi}(\bold{\omega},v)=\int \frac{\partial}{\partial \bold{x}}m(\bold{x},v) W(\bold{x},\bold{\omega})f(\bold{x})d\bold{x},}
-where \eqn{W(\bold{x},\bold{\omega})} is the define as above. Then, the 
+response of \eqn{T_v(y)} is \eqn{m(\boldsymbol{\omega},v)=E[H(y,v)\vert \textbf{X}=\textbf{x}]}. Then, integral transformation for the gradient of
+\eqn{m(\boldsymbol{\omega},v)} is defined as
+\deqn{\boldsymbol{\psi}(\boldsymbol{\omega},v)=\int \frac{\partial}{\partial \textbf{x}}m(\textbf{x},v) W(\textbf{x},\boldsymbol{\omega})f(\textbf{x})d\textbf{x},}
+where \eqn{W(\textbf{x},\boldsymbol{\omega})} is the define as above. Then, the 
 candidate matrix for the central subspace (CS) is defined as
-\deqn{\bold{M}_{CS}=\int H(y_1,v)H(y_2,v)dv \int \bold{\psi}(\bold{\omega}) \bold{\psi}(\bold{\omega})^T K(\bold{\omega})d\bold{\omega},}
-where \eqn{K(\bold{\omega})} is the same as above, and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp(v^2/(2\sigma_t^2))} under  `FM`, 
+\deqn{\textbf{M}_{CS}=\int H(y_1,v)H(y_2,v)dv \int \boldsymbol{\psi}(\boldsymbol{\omega}) \bar{\boldsymbol{\psi}}(\boldsymbol{\omega})^T K(\boldsymbol{\omega})d\boldsymbol{\omega},}
+where \eqn{K(\boldsymbol{\omega})} is the same as above, and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp(v^2/(2\sigma_t^2))} under  `FM`, 
 and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp((y-v)^2/(2\sigma_t^2))} under `CM`.
 Here \eqn{\sigma_t^2} is a tuning parameter and it refers as the "tuning parameter for the response variable" and is denote by `wy` in all functions.
 

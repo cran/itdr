@@ -9,11 +9,14 @@
  * Peng Zeng @ Auburn University
  * 03-30-2010
  **********************************************************************/
-  
+#define USE_FC_LEN_T  
 #include <R.h>
 #include <Rmath.h>
 #include <R_ext/BLAS.h>
 
+#ifndef FCONE
+# define FCONE
+#endif
 /**********************************************************************
  * Calculate the candidate matrix for the Central Mean Subspace.
  * Weight function W(x, u): Gaussian function with covariance h * I_p.
@@ -49,7 +52,7 @@ void FM_mean(const double* x, const double* gk, const double* y,
     for(i = 0; i < (*n); i++)
       {
         alpha = y[i] * y[i];   
-        F77_CALL(dsyr)(&uplo, p, &alpha, gk + i, n, Mmat, p);
+        F77_CALL(dsyr)(&uplo, p, &alpha, gk + i, n, Mmat, p FCONE);
         wsum += (alpha * sc1);  /* y[i] * y[i] / (2 * h) */
       }
 
@@ -71,7 +74,7 @@ void FM_mean(const double* x, const double* gk, const double* y,
         /* xij = gk[j, ] + xij / (2 * h) */
         F77_CALL(daxpy)(p, &a, gk + j, n, xij, &one); /* DAXPY - replace y by da*x + y */
 
-        F77_CALL(dsyr2)(&uplo, p, &alpha, gkxij, &one, xij, &one, Mmat, p); /* DSYR2 - perform the symmetric rank 2 operation */
+        F77_CALL(dsyr2)(&uplo, p, &alpha, gkxij, &one, xij, &one, Mmat, p FCONE); /* DSYR2 - perform the symmetric rank 2 operation */
       }
 
   for(i = 0; i < pp; i+=((*p)+1)) Mmat[i] += wsum;
@@ -117,7 +120,7 @@ void FM_pdf(const double* x, const double* gk, const double* y,
   wsum = 0.0;
   if((*out) == 0)        /* exclude i = j from summation */
   {
-    F77_CALL(dsyrk)(&uplo, &trans, p, n, &a, gk, n, &a, Mmat, p); /* DSYRK - perform one of the symmetric rank k operations */
+    F77_CALL(dsyrk)(&uplo, &trans, p, n, &a, gk, n, &a, Mmat, p FCONE FCONE); /* DSYRK - perform one of the symmetric rank k operations */
     wsum = ( sc1x * ((double)(*n)) );
   }
 
@@ -140,7 +143,7 @@ void FM_pdf(const double* x, const double* gk, const double* y,
         /* xij = gk[j, ] + xij / (2 * hx) */
         F77_CALL(daxpy)(p, &a, gk + j, n, xij, &one);
 
-        F77_CALL(dsyr2)(&uplo, p, &alpha, gkxij, &one, xij, &one, Mmat, p);
+        F77_CALL(dsyr2)(&uplo, p, &alpha, gkxij, &one, xij, &one, Mmat, p FCONE);
       }
 
   for(i = 0; i < pp; i+=((*p)+1)) Mmat[i] += wsum;
@@ -197,18 +200,18 @@ void FM_mean_norm(const double* x, const double* y, const double* h,
         Arow[i] += aij; Arow[j] += aij;
 
         alpha = aij * a;
-        F77_CALL(dsyr2)(&uplo, p, &alpha, x+i, n, x+j, n, Mmat, p);
+        F77_CALL(dsyr2)(&uplo, p, &alpha, x+i, n, x+j, n, Mmat, p FCONE);
       }
 
   if((*out) == 0) for(i = 0; i < (*n); i++)
     {
       alpha = a * y[i] * y[i] - Arow[i] * b; 
-      F77_CALL(dsyr)(&uplo, p, &alpha, x + i, n, Mmat, p);
+      F77_CALL(dsyr)(&uplo, p, &alpha, x + i, n, Mmat, p FCONE);
     }
   else for(i = 0; i < (*n); i++)
     {
       alpha = -b * Arow[i];
-      F77_CALL(dsyr)(&uplo, p, &alpha, x + i, n, Mmat, p);
+      F77_CALL(dsyr)(&uplo, p, &alpha, x + i, n, Mmat, p FCONE);
     }
 
   Asum = 0.0;
@@ -271,18 +274,18 @@ void FM_pdf_norm(const double* x, const double* y, const double* hx,
         Arow[i] += aij; Arow[j] += aij;
 
         alpha = aij * a;
-        F77_CALL(dsyr2)(&uplo, p, &alpha, x+i, n, x+j, n, Mmat, p);
+        F77_CALL(dsyr2)(&uplo, p, &alpha, x+i, n, x+j, n, Mmat, p FCONE);
       }
 
   if((*out) == 0) for(i = 0; i < (*n); i++)
     {
       alpha = a - Arow[i] * b; 
-      F77_CALL(dsyr)(&uplo, p, &alpha, x+i, n, Mmat, p);
+      F77_CALL(dsyr)(&uplo, p, &alpha, x+i, n, Mmat, p FCONE);
     }
   else for(i = 0; i < (*n); i++)
     {
       alpha = -b * Arow[i];
-      F77_CALL(dsyr)(&uplo, p, &alpha, x+i, n, Mmat, p);
+      F77_CALL(dsyr)(&uplo, p, &alpha, x+i, n, Mmat, p FCONE);
     }
 
   Asum = 0.0;

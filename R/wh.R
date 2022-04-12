@@ -19,8 +19,8 @@
 #' \item{h.hat}{The estimated bandwidth parameter for the Gaussian kernel function.}
 #' @export
 #' @details 
-#' The kernel density estimation of \eqn{f_{\bold{x}}(\bold{x})} at a fixed point \eqn{\bold{x}_0} is defined as
-#' \deqn{\widehat{f}_{\bold{x}_0}(\bold{x})=(nh^p)^{-1}\sum_{\ell=1}^n G\left(\frac{\bold{x}_0-\bold{x}_{\ell}}{h}\right),}
+#' The kernel density estimation of \eqn{f_{\textbf{x}}(\textbf{x})} at a fixed point \eqn{\textbf{x}_0} is defined as
+#' \deqn{\widehat{f}_{\textbf{x}_0}(\textbf{x}_0)=(nh^p)^{-1}\sum_{\ell=1}^n G\left(\frac{\textbf{x}_0-\textbf{x}_{\ell}}{h}\right),}
 #' where \eqn{G(\cdot)} is a Gaussian kernel function and `h' is the bandwidth of the 
 #' kernel function. We denote this parameter as `wh` in all functions.
 #' @references
@@ -35,9 +35,7 @@ wh=function(y,x,d,wx=0.1,wy=1,wh_seq=seq(0.1,3,by=.1),
   if(wh_seq[1]==0){
     stop("Error!: h Sequence should not start zero")
   }
-  if(method!="FM" || method!="CM"){
-    stop("Error!:  method should be either 'FM' or 'CM'")
-  }
+  if(method=="FM" || method=="CM"){
   xdensity="kernel"
   h=wh_seq
   dj=matrix(0,nrow=B,ncol=1)
@@ -69,5 +67,8 @@ wh=function(y,x,d,wx=0.1,wy=1,wh_seq=seq(0.1,3,by=.1),
   close(pb)
   disttab=data.frame(h=wh_seq,dbar=dist.r)
   h.hat=wh_seq[which.min(dist.r)]
+  }else{
+    stop("Error!:  method should be either 'FM' or 'CM'")
+  }
   list(dis_h=disttab,h.hat=h.hat)
 }

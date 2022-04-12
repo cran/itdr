@@ -14,6 +14,7 @@
 
 <title>itdr-vignette</title>
 
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -34,26 +35,28 @@
   }
 </style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -62,9 +65,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -122,187 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
-
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -320,164 +143,562 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>“itdr” is a system for estimating a basis of the central and central mean subspaces in regression by using integral transformation methods. This “vignette” demonstrate the usage of functions in <code>itdr</code> package over “automobile” and “PDB” datasets.</p>
+<p><strong>itdr</strong> is a system for estimating a basis of the central and central mean subspaces in regression by using integral transformation methods. This <code>vignette</code> demonstrate the usage of functions in <strong>itdr</strong> package over <code>automobile</code>, <code>Recumbent</code> and <code>PDB</code> datasets.</p>
 </div>
 <div id="chapter-1-installation" class="section level2">
 <h2>Chapter 1: Installation</h2>
 <div id="install-itdr-package" class="section level3">
-<h3>1.1: Install <code>itdr</code> package</h3>
-<p>Installation can be done for <code>itdr</code> R package in three ways.</p>
+<h3>1.1: Install <strong>itdr</strong> package</h3>
+<p>Installation can be done for <strong>itdr</strong> R package in three ways.</p>
 <ul>
 <li>From the Comprehensive R Archive Network (CRAN): Use <code>install.packages()</code> function in R. Then, import <code>itdr</code> package into working session using <code>library()</code> function. That is,</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;itdr&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(itdr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;itdr&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span></code></pre></div>
 <ul>
-<li>From binary source package: Use <code>intall.package()</code> function in R. Then, import <code>itdr</code> package into working session using <code>library()</code> function. That is,</li>
+<li>From binary source package: Use <code>intall.package()</code> function in R. Then, import <strong>itdr</strong> package into working session using <code>library()</code> function. That is,</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;~/itdr.zip&quot;</span>)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(itdr)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;~/itdr.zip&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span></code></pre></div>
 <ul>
 <li>From GitHub: Use <code>install_github()</code> function in R <code>devtools</code> package as follows.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(devtools)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">install_github</span>(<span class="st">&quot;TharinduPDeAlwis/itdr&quot;</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">library</span>(itdr)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;TharinduPDeAlwis/itdr&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span></code></pre></div>
 </div>
 </div>
 <div id="chpater-2-functions-related-to-the-fourier-and-convolution-transformation-methods-to-estimate-sufficient-dimension-reduction-sdr-subspaces" class="section level2">
 <h2>Chpater 2: Functions related to the Fourier and Convolution transformation methods to estimate Sufficient Dimension Reduction (SDR) subspaces</h2>
-<p>In this section, we describe the functions in <code>itdr</code> package which use Fourier transformation method to estimate sufficient dimension reduction (SDR) subspaces in regression. We only demonstrate the Fourier transformation method. However, by passing the argument <code>method=&quot;CM&quot;</code> to the <code>itdr()</code> function, convolution transformation method can be obtained.</p>
-<p>Before estimating the SDR subspaces, it is required to estimate the dimension (d) of the SDR subspace and tunning parameters <code>sw2</code>, and <code>st2</code>. In Section 2.1, the estimation of dimension (d) is demonstrated. The estimation of the tuning parameter <code>sw2</code> for both subspaces, i.e., for the central subspace (CS) and the central mean subspace (CMS), is explained in Section 2.2.1. Moreover, the estimation of <code>st2</code> for the central subspace (CS) is explained in Section 2.2.2. Finally, the use of <code>itdr()</code> function to estimate the central subspace is demonstrated in Section 2.3.</p>
+<p>In this section, we describe the functions in <strong>itdr</strong> package which use Fourier transformation method to estimate sufficient dimension reduction (SDR) subspaces in regression. We only demonstrate the Fourier transformation method. However, by passing the argument <code>method=&quot;CM&quot;</code> to the <code>itdr()</code> function, convolution transformation method can be obtained.</p>
+<p>Before estimating the SDR subspaces, it is required to estimate the dimension (d) of the SDR subspace and tuning parameters <code>sw2</code>, and <code>st2</code>. In Section 2.1, the estimation of dimension (d) is demonstrated. The estimation of the tuning parameter <code>sw2</code> for both subspaces, i.e., for the central subspace (CS) and the central mean subspace (CMS), is explained in Section 2.2.1. Moreover, the estimation of <code>st2</code> for the central subspace (CS) is explained in Section 2.2.2. Finally, the use of <code>itdr()</code> function to estimate the central subspace is demonstrated in Section 2.3.</p>
 <div id="estimating-the-dimension-d-of-sufficient-dimension-reduction-sdr-subspaces" class="section level3">
 <h3>2.1: Estimating the dimension (d) of sufficient dimension reduction (SDR) subspaces</h3>
 <p>Bootstrap estimation procedure is used to estimate the unknown dimension (d) of sufficient dimension reduction subspaces, for more details see Zhu and Zeng (2006). The <code>d.boots()</code> function can be used to estimate the dimension (d). Now, let’s estimate the dimension <code>d</code> of the central subspace of the <code>automobile</code> dataset, here we use the response variable y, and the predictor variables x as mentioned in Zhu and Zeng (2006). We need to pass the arguments to the <code>d.boots()</code> function as <code>space=&quot;pdf&quot;</code> to estimate the CS, <code>xdensity=&quot;normal&quot;</code> for assuming normal density for the predictors, and <code>method=&quot;FM&quot;</code> for useing the Fourier transformation method.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#Install package</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw">library</span>(itdr)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co"># Use dataset available in itdr package</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw">data</span>(automobile)</a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="kw">head</span>(automobile)</a>
-<a class="sourceLine" id="cb4-6" title="6">automobile.na=<span class="kw">na.omit</span>(automobile)</a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co"># prepare response and predictor variables </span></a>
-<a class="sourceLine" id="cb4-8" title="8">auto_y=<span class="kw">log</span>(automobile.na[,<span class="dv">26</span>])</a>
-<a class="sourceLine" id="cb4-9" title="9">auto_xx=automobile.na[,<span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)]</a>
-<a class="sourceLine" id="cb4-10" title="10">auto_x=<span class="kw">scale</span>(auto_xx) <span class="co"># Standardize the predictors</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co"># call to the d.boots() function with required arguments</span></a>
-<a class="sourceLine" id="cb4-12" title="12">d_est=<span class="kw">d.boots</span>(auto_y,auto_x,<span class="dt">plot=</span><span class="ot">TRUE</span>,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb4-13" title="13">auto_d=d_est<span class="op">$</span>d.hat</a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co"># Estimated d_hat=2</span></a></code></pre></div>
-<p>Here, the estimate of the dimension of the central subspace for <code>automobile</code> data is 2, i.e., d_hat=2.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Install package</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use dataset available in itdr package</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(automobile)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(automobile)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   symboling normalized        make fuelType aspiration #doors   bodyStyle</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         3         NA alfa-romero      gas        std    two convertible</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         3         NA alfa-romero      gas        std    two convertible</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         1         NA alfa-romero      gas        std    two   hatchback</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         2        164        audi      gas        std   four       sedan</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         2        164        audi      gas        std   four       sedan</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         2         NA        audi      gas        std    two       sedan</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   driveWheel engineLoc wheelBase length width height curbWeight engineType</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1        rwd     front      88.6  168.8  64.1   48.8       2548       dohc</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2        rwd     front      88.6  168.8  64.1   48.8       2548       dohc</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3        rwd     front      94.5  171.2  65.5   52.4       2823       ohcv</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4        fwd     front      99.8  176.6  66.2   54.3       2337        ohc</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5        4wd     front      99.4  176.6  66.4   54.3       2824        ohc</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6        fwd     front      99.8  177.3  66.3   53.1       2507        ohc</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   #Cylinder engineSize fuelSys bore stroke compession norsepower peak_rpm</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      four        130    mpfi 3.47   2.68        9.0        111     5000</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      four        130    mpfi 3.47   2.68        9.0        111     5000</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       six        152    mpfi 2.68   3.47        9.0        154     5000</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      four        109    mpfi 3.19   3.40       10.0        102     5500</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      five        136    mpfi 3.19   3.40        8.0        115     5500</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6      five        136    mpfi 3.19   3.40        8.5        110     5500</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   city_rpm highwayMPG price</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       21         27 13495</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       21         27 16500</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       19         26 16500</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       24         30 13950</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       18         22 17450</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       19         25 15250</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>automobile.na<span class="ot">=</span><span class="fu">na.omit</span>(automobile)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare response and predictor variables </span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>auto_y<span class="ot">=</span><span class="fu">log</span>(automobile.na[,<span class="dv">26</span>])</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>auto_xx<span class="ot">=</span>automobile.na[,<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)]</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>auto_x<span class="ot">=</span><span class="fu">scale</span>(auto_xx) <span class="co"># Standardize the predictors</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># call to the d.boots() function with required arguments</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>d_est<span class="ot">=</span><span class="fu">d.boots</span>(auto_y,auto_x,<span class="at">Plot=</span><span class="cn">TRUE</span>,<span class="at">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="at">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====</span>                                                                 <span class="er">|</span>   <span class="dv">8</span>%</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========</span>                                                           <span class="er">|</span>  <span class="dv">15</span>%</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================</span>                                                      <span class="er">|</span>  <span class="dv">23</span>%</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================</span>                                                <span class="er">|</span>  <span class="dv">31</span>%</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================</span>                                           <span class="er">|</span>  <span class="dv">38</span>%</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================</span>                                      <span class="er">|</span>  <span class="dv">46</span>%</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================</span>                                <span class="er">|</span>  <span class="dv">54</span>%</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================================</span>                           <span class="er">|</span>  <span class="dv">62</span>%</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================================</span>                      <span class="er">|</span>  <span class="dv">69</span>%</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================</span>                <span class="er">|</span>  <span class="dv">77</span>%</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================================================</span>           <span class="er">|</span>  <span class="dv">85</span>%</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================================================</span>     <span class="er">|</span>  <span class="dv">92</span>%</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASAAAAEgCAMAAAAjXV6yAAAAUVBMVEUAAAAAADoAAGYAOpAAZrY6AAA6ADo6AGY6kNtmAABmADpmtrZmtv+QOgCQZgCQkGaQ2/+2ZgC2/7a2///bkDrb////tmb/25D//7b//9v///+V4b+FAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAIsUlEQVR4nO2di3ajNhRFceK0cetp7YYQj///Q4skcIiNdKSLLgJz9lqT8USYK/YIoRdQXUmQqnQGlg4FASgIQEEACgJQEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJkFlSthlKC8u5Oj5kFpf/HlEZJUN0qONoPLx8ZdlcQHUH17nS9HPbX6YKKlzcVQb9/vdufr59yQT/MPJugy8GeXtfz66dckDh6XhRLUMt5LxVUBf85I0p1UKflcqjyCCpnSO0q5k6y378oSCXuQzIFoeRShigIsExBY6mFDCm1g777XKJK+tkF+S9ekbt7ekGtof2E3Y0nljGkVQc1XUPofi9Rwx1bEDRpd57EIoaWKMiXRkEg7SkFSXrz3rQShhZYgvxJFASSKAgFKmBIraEY7GhsXlBddWOuTf8hfneSFpIiEkFtX/T18+w5csNtTLpV9fqZFje9k6aLQFCzO7WHfTn4DfWzGmbj1Mv8+gWZ4lEHZryumiVofkPpgkzxMIftKxuGfsw+vQ5KHcxXR16Czp6yYemHzLzbiLsTcxsS10H1+HgG2gsa7ngGQa547E4acXF21iBIMW5ElJkNUVCucIMNTfXsvTxNihuVm3kNCQS5y5dbH5U5bpygWRdUydpBhlA7SBo3PjezrTuTtYMMgZZ09O7ujjH1iOeQJDjFXAvo621SJdTv7scxSo5WW5Gkkv56y9sOmrgUUVfRQi7ztiCJQ2gqWogg+6sJIfQUCQTB4dSscaN3qKRI0g6aZCY1bsIuVRRJ2kHT2tCJcUvvVN5QlIXTvZlFYbeShmJEH8OchqY14G0MaFWq2RVJBszwUJn188cpUNz0LsyZFUlOsfDqw2tXTZ1tQUsetM9AVkUq7SBTbrouW/K0TxYyKtJpKJrSUxcrQXb/uQIIBPXnWKA5dDm8fNgi1Phqaf2hikwRZANmben4egtW1Y2T6L3gzTCWk6cQyRqKjZlZDc2L5Ys7hRxBZA3Frz8/7J8Z4k4iQyGSjShe/jqFBU1YH5SXyXEkI4rtUZ/fg6fYlPVBmZkaSDTtsw/ca2mYsrojOxNPM7WGYkeZhmLGWIJK+i/XtAlM+yyqBF0njlUmb9gLCk37eNcHlXp2hzxcqqDz9yGGxs3E64O0kE8IJG/Yl6BpPLGgPMwtSBxQ1Fl9N4+/ietpLOfxOMKIss7q19u+GxCT8sSCTCPHjLpqrO5QRTixnbyhEWTGnHOs7pgXUUzJKba/HMxK+9AptpjO6uSYshHF3Sk8+bOgzurUoCqX+aV1NaZE3UJndVLYbZUgfUFtIzFi4nDCzSzaJMdV6mosrrMqDjxzX6z8o0qVBUU8GShz3OwkRhat7jD1infONHPc/KSFlq8PWsHEYY7Qsr6YYXWdVVls2cShIXhLZr64GqRcIkR1kClC9WrrIBs+/9V7sKG9lE0qP8UFxWdgM2PSjzmIy8J2BUXmYcuCogrRpgXFKNq4oCu8a3Hzggyh7jMF3RiXtLnhjjCP2VIStMhpnxge8qUjaKHTPhHMI2i5g/aY+4xtbNongir4z+jvBVlzCbrPmlYdtNRpnxgq7z+ivwVZ7rRPBHMImnt3eak8n6O/lDkPy6Ma/Rj9nQhW21DsqEY+RX8lgvU2FHuqhw/R34hg3Zd5R3X3d/QXYlh1Q7FDVdAzlKA+hzM3FJc+3DGkGvyM3jyWVTcUf8B2EICCANqClnMzi5BiJWg1FBKUFqJ8CoaCAJk7q2khyqdgMndW00KUT8Fk7mqkhSifgsncWU0LUT4FwxIEyDyrkRaifAomc2c1LUT5FMxq+galoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQBlQXYQ2zs04rmB2LyYYvwxRnW7t7TXf7iHG4ezEURX0O9fu1N7VJ6HNjXjwybmsd/jD8IydxxHvN1igHnIPMpGGF1B7gHwnmlY+3byx1+7ccux77hnH6Q8pq9xEzDBbADmqIM8j7uoX/8ZE2TfbDJKsqCmeh8MnsueujGHoPH3TrUiRuug5uW/g6fCSD/FhrMLstdfzSBofADbnEmjgmpzVngeNtckv2PwW5DwFbL6gprxytH7ZnL37IfReSX37qWk47ztx5MNiLogz3+crWnGBdlDGnu/h6Su7QWJX0GsLaj2ZKzuVqE8anCHNFZVu1o2ra7tBPmygVEWFH59/WgJcvO3Y6eYK0Fpz+9xW4ezEUS7HRT8jxtvSZvaaTCJO9xeWAdNebuurqDuRPKdFJ6uRuPtF5yTewxWEMhGEHZWARQEoCAABQEoCEBBAAoCUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCDAMgQ1u9PgpnxA/JY5WIyg0lnwQUGA8oLqqtr9606xr7e/zQJXs9L+6FLMYpfLwfz26Fbgt393K6zuErUoLsgsimqqXpBdEd+9ktus5jRLny4H89vdyS4wa6qjFdRYU/tbolr+Sgtyy+rOvaD3a/+j9WDfufjyYT+0v+jX3pkt3Qo0W7e/j6/4zEVpQe6om17Q8Xr74eola+porbj7Lpwgp2SQqJbB0oJqv6B+HezNgb1n5zgQZK09uSBUgq7d4fcOzoMtN1GCusXhI4JuR/3DQVdoBnXQkwvqblAZEeSuTedvB7ZI9U6+r2LPLuhnO2goyLaD2jPw5qBxS3nv2kFPL2jhUBCAggAUBKAgAAUBKAhAQQAKAlAQgIIAFASgIAAFASgIQEEACgJQEICCABQEoCAABQEoCEBBgP8B3zMzmyWLuh0AAAAASUVORK5CYII=" /><!-- --></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>auto_d<span class="ot">=</span>d_est<span class="sc">$</span>d.hat</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimated d_hat=2</span></span></code></pre></div>
+<p>Here, the estimate of the dimension of the central subspace for ‘automobile’ data is 2, i.e., d_hat=2.</p>
 </div>
 <div id="estimating-tuning-parameters-and-bandwidth-parameters-for-gaussian-kernel-density-estimation" class="section level3">
 <h3>2.2: Estimating tuning parameters and bandwidth parameters for Gaussian kernel density estimation</h3>
-<p>There are two tuning parameters that need to be estimated in the process of estimating SDR subspaces using the Fourier method: namely <code>sw2</code> and <code>st2</code>. The <code>sw2</code> required in both the central mean (CMS) and the central subspace (CS). However, the <code>st2</code> required only in the central subspace. The code in Section 2.2.1 demonstrates the use of function <code>wx()</code> to estimate the tunning parameter <code>sw2</code>, and the use of the function <code>wy()</code> to estimate the tunning parameter <code>st2</code> is described in Section 2.2.2.</p>
+<p>There are two tuning parameters that need to be estimated in the process of estimating SDR subspaces using the Fourier method: namely <code>sw2</code> and <code>st2</code>. The <code>sw2</code> required in both the central mean (CMS) and the central subspace (CS). However, the <code>st2</code> required only in the central subspace. The code in Section 2.2.1 demonstrates the use of function <code>wx()</code> to estimate the tuning parameter <code>sw2</code>, and the use of the function <code>wy()</code> to estimate the tuning parameter <code>st2</code> is described in Section 2.2.2.</p>
 </div>
 <div id="estimate-sw2" class="section level3">
 <h3>2.2.1: Estimate <code>sw2</code></h3>
 <p>To estimate the tuning parameter <code>sw2</code>, we can use <code>wx()</code> function with the subspace option either <code>space=&quot;pdf&quot;</code> for the CS and <code>space=&quot;mean&quot;</code> for the CMS. During the estimation process, the other parameters are fixed. The following R code chunk demonstrates the estimation of <code>sw2</code> for the central subspace.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">auto_d=<span class="dv">2</span> <span class="co">#The estimated value from Section 2.1</span></a>
-<a class="sourceLine" id="cb5-2" title="2">auto_sw2=<span class="kw">wx</span>(auto_y,auto_x,auto_d,<span class="dt">wx_seq=</span><span class="kw">seq</span>(<span class="fl">0.05</span>,<span class="dv">1</span>,<span class="dt">by=</span><span class="fl">0.01</span>),<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb5-3" title="3">auto_sw2<span class="op">$</span>wx.hat <span class="co"># we get the estimator for sw2 as 0.14</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>auto_d<span class="ot">=</span><span class="dv">2</span> <span class="co">#The estimated value from Section 2.1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>auto_sw2<span class="ot">=</span><span class="fu">wx</span>(auto_y,auto_x,auto_d,<span class="at">wx_seq=</span><span class="fu">seq</span>(<span class="fl">0.05</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.01</span>),<span class="at">B=</span><span class="dv">500</span>,<span class="at">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=</span>                                                                     <span class="er">|</span>   <span class="dv">1</span>%</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=</span>                                                                     <span class="er">|</span>   <span class="dv">2</span>%</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==</span>                                                                    <span class="er">|</span>   <span class="dv">3</span>%</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===</span>                                                                   <span class="er">|</span>   <span class="dv">4</span>%</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====</span>                                                                  <span class="er">|</span>   <span class="dv">5</span>%</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====</span>                                                                  <span class="er">|</span>   <span class="dv">6</span>%</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====</span>                                                                 <span class="er">|</span>   <span class="dv">7</span>%</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======</span>                                                                <span class="er">|</span>   <span class="dv">8</span>%</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======</span>                                                               <span class="er">|</span>   <span class="dv">9</span>%</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======</span>                                                               <span class="er">|</span>  <span class="dv">10</span>%</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========</span>                                                              <span class="er">|</span>  <span class="dv">11</span>%</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=========</span>                                                             <span class="er">|</span>  <span class="dv">12</span>%</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=========</span>                                                             <span class="er">|</span>  <span class="dv">14</span>%</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========</span>                                                            <span class="er">|</span>  <span class="dv">15</span>%</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========</span>                                                           <span class="er">|</span>  <span class="dv">16</span>%</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============</span>                                                          <span class="er">|</span>  <span class="dv">17</span>%</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============</span>                                                          <span class="er">|</span>  <span class="dv">18</span>%</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=============</span>                                                         <span class="er">|</span>  <span class="dv">19</span>%</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============</span>                                                       <span class="er">|</span>  <span class="dv">21</span>%</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============</span>                                                       <span class="er">|</span>  <span class="dv">22</span>%</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================</span>                                                      <span class="er">|</span>  <span class="dv">23</span>%</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================</span>                                                     <span class="er">|</span>  <span class="dv">24</span>%</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================</span>                                                    <span class="er">|</span>  <span class="dv">25</span>%</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================</span>                                                    <span class="er">|</span>  <span class="dv">26</span>%</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================</span>                                                   <span class="er">|</span>  <span class="dv">27</span>%</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================</span>                                                  <span class="er">|</span>  <span class="dv">28</span>%</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================</span>                                                  <span class="er">|</span>  <span class="dv">29</span>%</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================</span>                                                 <span class="er">|</span>  <span class="dv">30</span>%</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================</span>                                                <span class="er">|</span>  <span class="dv">31</span>%</span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================</span>                                               <span class="er">|</span>  <span class="dv">32</span>%</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================</span>                                               <span class="er">|</span>  <span class="dv">33</span>%</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================</span>                                              <span class="er">|</span>  <span class="dv">34</span>%</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=========================</span>                                             <span class="er">|</span>  <span class="dv">35</span>%</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================</span>                                            <span class="er">|</span>  <span class="dv">36</span>%</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================</span>                                            <span class="er">|</span>  <span class="dv">38</span>%</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================</span>                                           <span class="er">|</span>  <span class="dv">39</span>%</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">40</span>%</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">41</span>%</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=============================</span>                                         <span class="er">|</span>  <span class="dv">42</span>%</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============================</span>                                        <span class="er">|</span>  <span class="dv">43</span>%</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================</span>                                       <span class="er">|</span>  <span class="dv">44</span>%</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================</span>                                       <span class="er">|</span>  <span class="dv">45</span>%</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================</span>                                      <span class="er">|</span>  <span class="dv">46</span>%</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================</span>                                     <span class="er">|</span>  <span class="dv">47</span>%</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================</span>                                    <span class="er">|</span>  <span class="dv">48</span>%</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================</span>                                    <span class="er">|</span>  <span class="dv">49</span>%</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================================</span>                                   <span class="er">|</span>  <span class="dv">50</span>%</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================</span>                                  <span class="er">|</span>  <span class="dv">51</span>%</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================</span>                                  <span class="er">|</span>  <span class="dv">52</span>%</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================================</span>                                 <span class="er">|</span>  <span class="dv">53</span>%</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================</span>                                <span class="er">|</span>  <span class="dv">54</span>%</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================================</span>                               <span class="er">|</span>  <span class="dv">55</span>%</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================================</span>                               <span class="er">|</span>  <span class="dv">56</span>%</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================</span>                              <span class="er">|</span>  <span class="dv">57</span>%</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=========================================</span>                             <span class="er">|</span>  <span class="dv">58</span>%</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">59</span>%</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">60</span>%</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================================</span>                           <span class="er">|</span>  <span class="dv">61</span>%</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================================</span>                          <span class="er">|</span>  <span class="dv">62</span>%</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================================</span>                          <span class="er">|</span>  <span class="dv">64</span>%</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=============================================</span>                         <span class="er">|</span>  <span class="dv">65</span>%</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============================================</span>                        <span class="er">|</span>  <span class="dv">66</span>%</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================</span>                       <span class="er">|</span>  <span class="dv">67</span>%</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================</span>                       <span class="er">|</span>  <span class="dv">68</span>%</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================================</span>                      <span class="er">|</span>  <span class="dv">69</span>%</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================================</span>                     <span class="er">|</span>  <span class="dv">70</span>%</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================</span>                    <span class="er">|</span>  <span class="dv">71</span>%</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================</span>                    <span class="er">|</span>  <span class="dv">72</span>%</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================================================</span>                   <span class="er">|</span>  <span class="dv">73</span>%</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================================</span>                  <span class="er">|</span>  <span class="dv">74</span>%</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================================</span>                  <span class="er">|</span>  <span class="dv">75</span>%</span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================================================</span>                 <span class="er">|</span>  <span class="dv">76</span>%</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================</span>                <span class="er">|</span>  <span class="dv">77</span>%</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================================================</span>               <span class="er">|</span>  <span class="dv">78</span>%</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======================================================</span>               <span class="er">|</span>  <span class="dv">79</span>%</span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================================</span>              <span class="er">|</span>  <span class="dv">80</span>%</span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=========================================================</span>             <span class="er">|</span>  <span class="dv">81</span>%</span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================================</span>            <span class="er">|</span>  <span class="dv">82</span>%</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================================</span>            <span class="er">|</span>  <span class="dv">83</span>%</span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===========================================================</span>           <span class="er">|</span>  <span class="dv">84</span>%</span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================================================</span>          <span class="er">|</span>  <span class="dv">85</span>%</span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=============================================================</span>         <span class="er">|</span>  <span class="dv">86</span>%</span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=============================================================</span>         <span class="er">|</span>  <span class="dv">88</span>%</span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============================================================</span>        <span class="er">|</span>  <span class="dv">89</span>%</span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================================</span>       <span class="er">|</span>  <span class="dv">90</span>%</span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================================</span>       <span class="er">|</span>  <span class="dv">91</span>%</span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================================================</span>      <span class="er">|</span>  <span class="dv">92</span>%</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================================================</span>     <span class="er">|</span>  <span class="dv">93</span>%</span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================================</span>    <span class="er">|</span>  <span class="dv">94</span>%</span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================================</span>    <span class="er">|</span>  <span class="dv">95</span>%</span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================================================================</span>   <span class="er">|</span>  <span class="dv">96</span>%</span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================================================</span>  <span class="er">|</span>  <span class="dv">97</span>%</span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================================================================</span> <span class="er">|</span>  <span class="dv">98</span>%</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================================================================</span> <span class="er">|</span>  <span class="dv">99</span>%</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>auto_sw2<span class="sc">$</span>wx.hat <span class="co"># we get the estimator for sw2 as 0.14</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.09</span></span></code></pre></div>
 </div>
 <div id="estimate-st2" class="section level3">
 <h3>2.2.2: Estimate <code>st2</code></h3>
 <p>To estimate the tuning parameter <code>st2</code>, we can use <code>wy()</code> function. Here, the other parameters are fixed. Notice that we do not need to specify the <code>space</code>, because the tuning parameter <code>st2</code> only required for the central subspace (CS).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">auto_d=<span class="dv">2</span> <span class="co"># Estimated value from Section 2.1</span></a>
-<a class="sourceLine" id="cb6-2" title="2">auto_st2=<span class="kw">wy</span>(auto_y,auto_x,auto_d,<span class="dt">wx=</span><span class="fl">0.1</span>,<span class="dt">wy_seq=</span><span class="kw">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dt">by=</span><span class="fl">0.1</span>),<span class="dt">xdensity=</span><span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3">auto_st2<span class="op">$</span>wy.hat <span class="co"># we get the estimator for st2=0.9 </span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>auto_d<span class="ot">=</span><span class="dv">2</span> <span class="co"># Estimated value from Section 2.1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>auto_st2<span class="ot">=</span><span class="fu">wy</span>(auto_y,auto_x,auto_d,<span class="at">wx=</span><span class="fl">0.1</span>,<span class="at">wy_seq=</span><span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.1</span>),<span class="at">xdensity=</span><span class="st">&quot;normal&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======</span>                                                               <span class="er">|</span>  <span class="dv">10</span>%</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================</span>                                                 <span class="er">|</span>  <span class="dv">30</span>%</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">40</span>%</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================================</span>                                   <span class="er">|</span>  <span class="dv">50</span>%</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">60</span>%</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================================</span>                     <span class="er">|</span>  <span class="dv">70</span>%</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================================</span>              <span class="er">|</span>  <span class="dv">80</span>%</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================================</span>       <span class="er">|</span>  <span class="dv">90</span>%</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>auto_st2<span class="sc">$</span>wy.hat <span class="co"># we get the estimator for st2=0.9 </span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
 </div>
 <div id="estimate-the-bandwidth-h-of-the-gaussian-kernel-density-function" class="section level3">
 <h3>2.2.3: Estimate the bandwidth (<code>h</code>) of the Gaussian kernel density function</h3>
 <p>If the distribution function of the predictor variables is unknown, then we use the Gaussian kernel density estimation to approximate the density function of the predictor variables. However, the bandwidth parameter needs to be estimated when <code>xdensity=&quot;kernel&quot;</code> is used. The <code>wh()</code> function uses the bootstrap estimator to estimate the bandwidth of the Gaussian kernel density estimation.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">h_hat=<span class="kw">wh</span>(auto_y,auto_x,auto_d,<span class="dt">wx=</span><span class="dv">5</span>,<span class="dt">wy=</span><span class="fl">0.1</span>,<span class="dt">wh_seq=</span><span class="kw">seq</span>(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="dt">by=</span>.<span class="dv">1</span>),<span class="dt">B=</span><span class="dv">50</span>,<span class="dt">space =</span> <span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;kernel&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co">#Bandwidth estimator for Gaussian kernel density estimation for central subspace</span></a>
-<a class="sourceLine" id="cb7-3" title="3">h_hat<span class="op">$</span>h.hat <span class="co">#we have the estimator as h_hat=1</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>h_hat<span class="ot">=</span><span class="fu">wh</span>(auto_y,auto_x,auto_d,<span class="at">wx=</span><span class="dv">5</span>,<span class="at">wy=</span><span class="fl">0.1</span>,<span class="at">wh_seq=</span><span class="fu">seq</span>(<span class="fl">0.1</span>,<span class="dv">2</span>,<span class="at">by=</span>.<span class="dv">1</span>),<span class="at">B=</span><span class="dv">50</span>,<span class="at">space =</span> <span class="st">&quot;pdf&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====</span>                                                                  <span class="er">|</span>   <span class="dv">5</span>%</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=======</span>                                                               <span class="er">|</span>  <span class="dv">10</span>%</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========</span>                                                            <span class="er">|</span>  <span class="dv">15</span>%</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================</span>                                                    <span class="er">|</span>  <span class="dv">25</span>%</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=====================</span>                                                 <span class="er">|</span>  <span class="dv">30</span>%</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================</span>                                              <span class="er">|</span>  <span class="dv">35</span>%</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================</span>                                          <span class="er">|</span>  <span class="dv">40</span>%</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="er">|================================</span>                                      <span class="er">|</span>  <span class="dv">45</span>%</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===================================</span>                                   <span class="er">|</span>  <span class="dv">50</span>%</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================</span>                                <span class="er">|</span>  <span class="dv">55</span>%</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">60</span>%</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==============================================</span>                        <span class="er">|</span>  <span class="dv">65</span>%</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="er">|=================================================</span>                     <span class="er">|</span>  <span class="dv">70</span>%</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  <span class="er">|====================================================</span>                  <span class="er">|</span>  <span class="dv">75</span>%</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="er">|========================================================</span>              <span class="er">|</span>  <span class="dv">80</span>%</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>  <span class="er">|============================================================</span>          <span class="er">|</span>  <span class="dv">85</span>%</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>  <span class="er">|===============================================================</span>       <span class="er">|</span>  <span class="dv">90</span>%</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="er">|==================================================================</span>    <span class="er">|</span>  <span class="dv">95</span>%</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|</span>                                                                            </span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="co">#Bandwidth estimator for Gaussian kernel density estimation for central subspace</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>h_hat<span class="sc">$</span>h.hat <span class="co">#we have the estimator as h_hat=1</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
 </div>
 <div id="estimate-sdr-subspaces" class="section level3">
 <h3>2.3: Estimate SDR subspaces</h3>
-<p>We have described the estimation procedure of the tunning parameters in the Fourier method in Sections 2.1-2.2. Now, we are ready to estimate the SDR subspaces. Zhu and Zeng (2006) used the Fourier method to facilitate the estimation of the SDR subspaces when the predictors are following a multivariate normal distribution. However, when the predictor variables is following an elliptical distribution or more generally when the distribution of the predictors is unknow, the predictors’ distribution function is approximated by using the Gaussian kernel density estimation (Zeng and Zhu, 2010). The <code>itdr()</code> function can be used to estimate the SDR subspaces under <code>FM</code> method as follows. Since the default setting of the <code>itdr()</code> function has <code>method=&quot;FM&quot;</code>, It is optional to specify the method as “FM”.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">library</span>(itdr)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">data</span>(automobile)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">head</span>(automobile)</a>
-<a class="sourceLine" id="cb8-4" title="4">df=<span class="kw">cbind</span>(automobile[,<span class="kw">c</span>(<span class="dv">26</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)])</a>
-<a class="sourceLine" id="cb8-5" title="5">dff=<span class="kw">as.matrix</span>(df)</a>
-<a class="sourceLine" id="cb8-6" title="6">automobi=dff[<span class="kw">complete.cases</span>(dff),]</a>
-<a class="sourceLine" id="cb8-7" title="7">d=<span class="dv">2</span>; <span class="co"># Estimated value from Section 2.1</span></a>
-<a class="sourceLine" id="cb8-8" title="8">wx=.<span class="dv">14</span> <span class="co"># Estimated value from Section 2.2.1</span></a>
-<a class="sourceLine" id="cb8-9" title="9">wy=.<span class="dv">9</span>  <span class="co"># Estimated value from Section 2.2.2</span></a>
-<a class="sourceLine" id="cb8-10" title="10">wh=<span class="fl">1.5</span>  <span class="co"># Estimated value from Section 2.2.3</span></a>
-<a class="sourceLine" id="cb8-11" title="11">p=<span class="dv">13</span>  <span class="co"># Estimated value from Section 2.3</span></a>
-<a class="sourceLine" id="cb8-12" title="12">y=automobi[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb8-13" title="13">x=automobi[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">14</span>)]</a>
-<a class="sourceLine" id="cb8-14" title="14">xt=<span class="kw">scale</span>(x)</a>
-<a class="sourceLine" id="cb8-15" title="15"><span class="co">#Distribution of the predictors is a normal distribution</span></a>
-<a class="sourceLine" id="cb8-16" title="16">fit.F_CMS=<span class="kw">itdr</span>(y,xt,d,wx,wy,wh,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb8-17" title="17"><span class="kw">round</span>(fit.F_CMS<span class="op">$</span>eta_hat,<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb8-18" title="18"></a>
-<a class="sourceLine" id="cb8-19" title="19"><span class="co">#Distribution of the predictors is a unknown (using kernel method)</span></a>
-<a class="sourceLine" id="cb8-20" title="20">fit.F_CMS=<span class="kw">itdr</span>(y,xt,d,wx,wy,wh,<span class="dt">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="dt">xdensity =</span> <span class="st">&quot;kernel&quot;</span>,<span class="dt">method=</span><span class="st">&quot;FM&quot;</span>)</a>
-<a class="sourceLine" id="cb8-21" title="21"><span class="kw">round</span>(fit.F_CMS<span class="op">$</span>eta_hat,<span class="dv">2</span>)</a></code></pre></div>
+<p>We have described the estimation procedure of the tunning parameters in the Fourier method in Sections 2.1-2.2. Now, we are ready to estimate the SDR subspaces. Zhu and Zeng (2006) used the Fourier method to facilitate the estimation of the SDR subspaces when the predictors are following a multivariate normal distribution. However, when the predictor variables is following an elliptical distribution or more generally when the distribution of the predictors is unknown, the predictors’ distribution function is approximated by using the Gaussian kernel density estimation (Zeng and Zhu, 2010). The <code>itdr()</code> function can be used to estimate the SDR subspaces under <code>FM</code> method as follows. Since the default setting of the <code>itdr()</code> function has <code>method=&quot;FM&quot;</code>, It is optional to specify the method as “FM”.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(automobile)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(automobile)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   symboling normalized        make fuelType aspiration #doors   bodyStyle</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         3         NA alfa-romero      gas        std    two convertible</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         3         NA alfa-romero      gas        std    two convertible</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         1         NA alfa-romero      gas        std    two   hatchback</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         2        164        audi      gas        std   four       sedan</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         2        164        audi      gas        std   four       sedan</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6         2         NA        audi      gas        std    two       sedan</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   driveWheel engineLoc wheelBase length width height curbWeight engineType</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1        rwd     front      88.6  168.8  64.1   48.8       2548       dohc</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2        rwd     front      88.6  168.8  64.1   48.8       2548       dohc</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3        rwd     front      94.5  171.2  65.5   52.4       2823       ohcv</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4        fwd     front      99.8  176.6  66.2   54.3       2337        ohc</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5        4wd     front      99.4  176.6  66.4   54.3       2824        ohc</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6        fwd     front      99.8  177.3  66.3   53.1       2507        ohc</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   #Cylinder engineSize fuelSys bore stroke compession norsepower peak_rpm</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      four        130    mpfi 3.47   2.68        9.0        111     5000</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2      four        130    mpfi 3.47   2.68        9.0        111     5000</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       six        152    mpfi 2.68   3.47        9.0        154     5000</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4      four        109    mpfi 3.19   3.40       10.0        102     5500</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5      five        136    mpfi 3.19   3.40        8.0        115     5500</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6      five        136    mpfi 3.19   3.40        8.5        110     5500</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   city_rpm highwayMPG price</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       21         27 13495</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2       21         27 16500</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3       19         26 16500</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4       24         30 13950</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5       18         22 17450</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6       19         25 15250</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">cbind</span>(automobile[,<span class="fu">c</span>(<span class="dv">26</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">12</span>,<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">17</span>,<span class="dv">19</span>,<span class="dv">20</span>,<span class="dv">21</span>,<span class="dv">22</span>,<span class="dv">23</span>,<span class="dv">24</span>,<span class="dv">25</span>)])</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>dff<span class="ot">=</span><span class="fu">as.matrix</span>(df)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>automobi<span class="ot">=</span>dff[<span class="fu">complete.cases</span>(dff),]</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="dv">2</span>; <span class="co"># Estimated value from Section 2.1</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>wx<span class="ot">=</span>.<span class="dv">14</span> <span class="co"># Estimated value from Section 2.2.1</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>wy<span class="ot">=</span>.<span class="dv">9</span>  <span class="co"># Estimated value from Section 2.2.2</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>wh<span class="ot">=</span><span class="fl">1.5</span>  <span class="co"># Estimated value from Section 2.2.3</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">13</span>  <span class="co"># Estimated value from Section 2.3</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span>automobi[,<span class="dv">1</span>]</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span>automobi[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">14</span>)]</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>xt<span class="ot">=</span><span class="fu">scale</span>(x)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of the predictors is a normal distribution</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>fit.F_CMS<span class="ot">=</span><span class="fu">itdr</span>(y,xt,d,wx,wy,wh,<span class="at">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="at">xdensity =</span> <span class="st">&quot;normal&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(fit.F_CMS<span class="sc">$</span>eta_hat,<span class="dv">2</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        [,1]  [,2]</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,] -0.09  0.01</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,]  0.38 -0.16</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,] -0.08  0.05</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,] -0.11  0.03</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,] -0.70 -0.24</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,]  0.06  0.83</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,]  0.07 -0.14</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,]  0.18 -0.13</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,] -0.17 -0.08</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,] -0.43 -0.26</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11,] -0.04  0.06</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12,] -0.26  0.29</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13,]  0.09 -0.15</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of the predictors is a unknown (using kernel method)</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a>fit.F_CMS<span class="ot">=</span><span class="fu">itdr</span>(y,xt,d,wx,wy,wh,<span class="at">space=</span><span class="st">&quot;pdf&quot;</span>,<span class="at">xdensity =</span> <span class="st">&quot;kernel&quot;</span>,<span class="at">method=</span><span class="st">&quot;FM&quot;</span>)</span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(fit.F_CMS<span class="sc">$</span>eta_hat,<span class="dv">2</span>)</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        [,1]  [,2]</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1,] -0.07 -0.34</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [2,]  0.00 -0.04</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [3,] -0.14  0.10</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [4,]  0.01  0.13</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [5,]  0.24 -0.27</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6,] -0.90  0.13</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [7,]  0.19  0.11</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8,]  0.17 -0.09</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9,]  0.03 -0.32</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [10,]  0.20  0.48</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11,] -0.06  0.04</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [12,] -0.05 -0.29</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [13,]  0.04  0.57</span></span></code></pre></div>
 </div>
 </div>
 <div id="chapter-3-functions-related-with-estimating-the-central-mean-subspace-using-iterative-hessian-transformation-iht" class="section level2">
 <h2>Chapter 3: Functions related with estimating the central mean subspace using Iterative Hessian Transformation (IHT)</h2>
-<p>The <code>itdr()</code> function also can be used to estimate the central mean subspace in regression by using iterative Hessian transformation (IHT) method as described in the following R chunk. Notice that the inputs are the method of estimation (<code>method=iht</code>), the response vector (y), design matrix of the predictors (x), and the dimension (d) of the CMS.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">d=<span class="dv">2</span></a>
-<a class="sourceLine" id="cb9-2" title="2">fit.iht_CMS=<span class="kw">itdr</span>(y,xt,d,<span class="dt">method=</span><span class="st">&quot;iht&quot;</span>)</a>
-<a class="sourceLine" id="cb9-3" title="3">fit.iht_CMS<span class="op">$</span>eta_hat</a></code></pre></div>
+<p>The <code>itdr()</code> function also can be used to estimate the central mean subspace in regression by using iterative Hessian transformation (IHT) method as described in the following R chunk on <code>Recumbent</code> dataset available in <strong>itdr</strong> package. Notice that the inputs are the method of estimation (<code>method=iht</code>), the response vector (y), design matrix of the predictors (x), and the dimension (d) of the CMS. The response and predictors are chosen as same as Cook and Li (2002).</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data</span>(<span class="st">&quot;Recumbent&quot;</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    Recumbent.df<span class="ot">=</span><span class="fu">na.omit</span>(Recumbent)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    y<span class="ot">=</span>Recumbent.df<span class="sc">$</span>outcome</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    X1<span class="ot">=</span><span class="fu">log</span>(Recumbent.df<span class="sc">$</span>ast)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    X2<span class="ot">=</span><span class="fu">log</span>(Recumbent.df<span class="sc">$</span>ck)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    X3<span class="ot">=</span><span class="fu">log</span>(Recumbent.df<span class="sc">$</span>urea)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    p<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    x<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(X1,X2,X3),<span class="at">ncol=</span>p)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    d<span class="ot">=</span><span class="dv">2</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    fit.iht_CMS<span class="ot">=</span><span class="fu">itdr</span>(y,x,<span class="dv">2</span>,<span class="at">method=</span><span class="st">&quot;iht&quot;</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    fit.iht_CMS<span class="sc">$</span>eta_hat</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            [,1]        [,2]</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]  0.3260269  0.95986216</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,] -0.2395713 -0.27884564</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3,] -0.9145010  0.03016189</span></span></code></pre></div>
 </div>
 <div id="chapter-4-functions-related-with-estimating-the-central-subspace-in-regression-using-fourier-transformation-approach-on-inverse-dimension-reduction" class="section level2">
 <h2>Chapter 4: Functions related with estimating the central subspace in regression using Fourier transformation approach on inverse dimension reduction</h2>
-<p>In this section, we demonstrate the functions in <code>itdr</code> package, which related to the Fourier transformation approach on inverse dimension reduction. In Section 4.1, we demonstrate the use of function to estimate the dimension of the central subspace using the Fourier transformation approach on inverse dimension reduction. The estimation of the CS is described in Section 4.2.</p>
+<p>In this section, we demonstrate the functions in <strong>itdr</strong> package, which related to the Fourier transformation approach on inverse dimension reduction. In Section 4.1, we demonstrate the use of function to estimate the dimension of the central subspace using the Fourier transformation approach on inverse dimension reduction. The estimation of the CS is described in Section 4.2.</p>
 <div id="estimating-d" class="section level3">
 <h3>4.1: Estimating d</h3>
-<p>The estimation of the dimension of the CS can be achieved using <code>d.test()</code> function which gives outputs of three different p-values for three different test statistics; Cook test statistic (Cook, 1998 and Weng and Yin, 2018), Scaled test statistic (Bentler and Xie, 2000), and Adjusted test statistic (Bentler and Xie, 2000). Suppose <code>m</code> is the candidate dimension of the CS to be tested <code>(H_0: d=m)</code>, then, the following R code shows the testing a candidate value <code>m</code> (&lt;p) for dimension of the CS of the planning database (PDB).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">library</span>(itdr)</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="kw">data</span>(PDB)</a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="kw">colnames</span>(PDB)=<span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb10-4" title="4">p=<span class="dv">15</span></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></a>
-<a class="sourceLine" id="cb10-6" title="6">df=PDB[,<span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</a>
-<a class="sourceLine" id="cb10-7" title="7">dff=<span class="kw">as.matrix</span>(df)</a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="co">#remove the NA rows</span></a>
-<a class="sourceLine" id="cb10-9" title="9">planingdb=dff[<span class="kw">complete.cases</span>(dff),]</a>
-<a class="sourceLine" id="cb10-10" title="10"></a>
-<a class="sourceLine" id="cb10-11" title="11">y=planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></a>
-<a class="sourceLine" id="cb10-12" title="12">x=planingdb[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span>(p<span class="op">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></a>
-<a class="sourceLine" id="cb10-13" title="13">x=x<span class="fl">+0.5</span></a>
-<a class="sourceLine" id="cb10-14" title="14"><span class="co"># desing matrix after tranformations</span></a>
-<a class="sourceLine" id="cb10-15" title="15">xt=<span class="kw">cbind</span>(x[,<span class="dv">1</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="op">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="op">^</span>(.<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb10-16" title="16">x[,<span class="dv">6</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="op">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="op">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="op">^</span>(.<span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb10-17" title="17">x[,<span class="dv">11</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="op">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="op">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="op">^</span>(.<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb10-18" title="18">m=<span class="dv">1</span></a>
-<a class="sourceLine" id="cb10-19" title="19">W=<span class="kw">sapply</span>(<span class="dv">50</span>,rnorm)</a>
-<a class="sourceLine" id="cb10-20" title="20"><span class="co">#run the hypothsis tests</span></a>
-<a class="sourceLine" id="cb10-21" title="21"><span class="kw">d.test</span>(y,x,m)</a></code></pre></div>
+<p>The estimation of the dimension of the CS can be achieved using <code>d.test()</code> function which gives outputs of three different p-values for three different test statistics; Weighted Chi-square test statistic (Weng and Yin, 2018), Scaled test statistic (Bentler and Xie, 2000), and Adjusted test statistic (Bentler and Xie, 2000). Suppose <code>m</code> is the candidate dimension of the CS to be tested <code>(H_0: d=m)</code>, then, the following R code shows the testing a candidate value <code>m</code> (&lt;p) for dimension of the CS of the planning database (PDB).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PDB)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(PDB)<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">15</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>PDB[,<span class="fu">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>dff<span class="ot">=</span><span class="fu">as.matrix</span>(df)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the NA rows</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>planingdb<span class="ot">=</span>dff[<span class="fu">complete.cases</span>(dff),]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span>planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span>planingdb[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span>(p<span class="sc">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span>x<span class="fl">+0.5</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># desing matrix after tranformations</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>xt<span class="ot">=</span><span class="fu">cbind</span>(x[,<span class="dv">1</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="sc">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="sc">^</span>(.<span class="dv">4</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">6</span>]<span class="sc">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="sc">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="sc">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="sc">^</span>(.<span class="dv">5</span>),</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">11</span>]<span class="sc">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="sc">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="sc">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="sc">^</span>(.<span class="dv">1</span>))</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>m<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>W<span class="ot">=</span><span class="fu">sapply</span>(<span class="dv">50</span>,rnorm)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#run the hypothsis tests</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">d.test</span>(y,x,m)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Hypothesis Tests for selecting sufficient dimension (d)</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Null: d=m    vs  Alternative: d&gt;m </span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  </span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Test         W.Ch.Sq         Scaled      Adjusted  </span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  p-value      0.96    1       0.9108079</span></span></code></pre></div>
 </div>
 <div id="estimating-central-subspace" class="section level3">
 <h3>4.2: Estimating central subspace</h3>
 <p>After selecting the dimension of the CS as described in Section 4.1, then, an estimator for the CS can be obtained by using <code>invFM()</code> function. The following R chunk shows the use of <code>invFM()</code> to estimate the CS for planning database (PDB).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(itdr)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw">data</span>(PDB)</a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">colnames</span>(PDB)=<span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb11-4" title="4">p=<span class="dv">15</span></a>
-<a class="sourceLine" id="cb11-5" title="5"><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></a>
-<a class="sourceLine" id="cb11-6" title="6">df=PDB[,<span class="kw">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</a>
-<a class="sourceLine" id="cb11-7" title="7">dff=<span class="kw">as.matrix</span>(df)</a>
-<a class="sourceLine" id="cb11-8" title="8"><span class="co">#remove the NA rows</span></a>
-<a class="sourceLine" id="cb11-9" title="9">planingdb=dff[<span class="kw">complete.cases</span>(dff),]</a>
-<a class="sourceLine" id="cb11-10" title="10"></a>
-<a class="sourceLine" id="cb11-11" title="11">y=planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></a>
-<a class="sourceLine" id="cb11-12" title="12">x=planingdb[,<span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span>(p<span class="op">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></a>
-<a class="sourceLine" id="cb11-13" title="13">x=x<span class="fl">+0.5</span></a>
-<a class="sourceLine" id="cb11-14" title="14"><span class="co"># desing matrix after tranformations give in Weng and Yin, (2018).</span></a>
-<a class="sourceLine" id="cb11-15" title="15">xt=<span class="kw">cbind</span>(x[,<span class="dv">1</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="op">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="op">^</span>(.<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb11-16" title="16">x[,<span class="dv">6</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="op">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="op">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="op">^</span>(.<span class="dv">5</span>),</a>
-<a class="sourceLine" id="cb11-17" title="17">x[,<span class="dv">11</span>]<span class="op">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="op">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="op">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="op">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="op">^</span>(.<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb11-18" title="18">W=<span class="kw">sapply</span>(<span class="dv">50</span>,rnorm)</a>
-<a class="sourceLine" id="cb11-19" title="19">d=<span class="dv">1</span> <span class="co"># estimated dimension of the CS from Section 4.1</span></a>
-<a class="sourceLine" id="cb11-20" title="20">betahat &lt;-<span class="kw">invFM</span>(xt,y,d,W,F)<span class="op">$</span>beta <span class="co"># estimated basis</span></a>
-<a class="sourceLine" id="cb11-21" title="21">betahat</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(itdr)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(PDB)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(PDB)<span class="ot">=</span><span class="cn">NULL</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">15</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span>PDB[,<span class="fu">c</span>(<span class="dv">79</span>,<span class="dv">73</span>,<span class="dv">77</span>,<span class="dv">103</span>,<span class="dv">112</span>,<span class="dv">115</span>,<span class="dv">124</span>,<span class="dv">130</span>,<span class="dv">132</span>,<span class="dv">145</span>,<span class="dv">149</span>,<span class="dv">151</span>,<span class="dv">153</span>,<span class="dv">155</span>,<span class="dv">167</span>,<span class="dv">169</span>)]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>dff<span class="ot">=</span><span class="fu">as.matrix</span>(df)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the NA rows</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>planingdb<span class="ot">=</span>dff[<span class="fu">complete.cases</span>(dff),]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span>planingdb[,<span class="dv">1</span>] <span class="co">#n-dimensionl response vector</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span>planingdb[,<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span>(p<span class="sc">+</span><span class="dv">1</span>))] <span class="co"># raw desing matrix</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span>x<span class="fl">+0.5</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># desing matrix after tranformations give in Weng and Yin, (2018).</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>xt<span class="ot">=</span><span class="fu">cbind</span>(x[,<span class="dv">1</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">2</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">3</span>]<span class="sc">^</span>(.<span class="dv">57</span>),x[,<span class="dv">4</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">5</span>]<span class="sc">^</span>(.<span class="dv">4</span>),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">6</span>]<span class="sc">^</span>(.<span class="dv">5</span>),x[,<span class="dv">7</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">8</span>]<span class="sc">^</span>(.<span class="dv">16</span>),x[,<span class="dv">9</span>]<span class="sc">^</span>(.<span class="dv">27</span>),x[,<span class="dv">10</span>]<span class="sc">^</span>(.<span class="dv">5</span>),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>x[,<span class="dv">11</span>]<span class="sc">^</span>(.<span class="dv">5</span>),x[,<span class="dv">12</span>]<span class="sc">^</span>(.<span class="dv">33</span>),x[,<span class="dv">13</span>]<span class="sc">^</span>(.<span class="dv">06</span>),x[,<span class="dv">14</span>]<span class="sc">^</span>(.<span class="dv">15</span>),x[,<span class="dv">15</span>]<span class="sc">^</span>(.<span class="dv">1</span>))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>W<span class="ot">=</span><span class="fu">sapply</span>(<span class="dv">50</span>,rnorm)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="dv">1</span> <span class="co"># estimated dimension of the CS from Section 4.1</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>betahat <span class="ot">&lt;-</span><span class="fu">invFM</span>(xt,y,d,W,F)<span class="sc">$</span>beta <span class="co"># estimated basis</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>betahat</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] -0.240992923  0.127511993 -0.446480946 -0.201679808 -0.130508082</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6]  0.225092170 -0.010737950  0.507992150 -0.500482012  0.042780096</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] -0.132329004 -0.109988190  0.229948626  0.004728476  0.157966683</span></span></code></pre></div>
 </div>
 </div>
 <div id="acknowledgment" class="section level2">
@@ -488,7 +709,6 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h2>References</h2>
 <ul>
 <li><p>Bentler, P.M., and Xie, J. (2000). Corrections to Test Statistics in Principal Hessian Directions. <em>Statistics and Probability Letters</em>. 47, 381-389.</p></li>
-<li><p>Cook, R. D. (1998). <em>Regression Graphics: Ideas for Studying Regressions Through Graphics</em>.Wiley.</p></li>
 <li><p>Cook R. D., and Li, B., (2002). Dimension Reduction for Conditional Mean in Regression. <em>The Annals of Statitics</em>, 30, 455-474.</p></li>
 <li><p>Weng J. and Yin X. (2018). Fourier Transform Approach for Inverse Dimension Reduction Method. <em>Journal of Nonparametric Statistics</em>. 30, 4, 1029-0311.</p></li>
 <li><p>Zeng P. and Zhu Y. (2010). An Integral Transform Method for Estimating the Central Mean and Central Subspaces. <em>Journal of Multivariate Analysis</em>. 101, 271–290.</p></li>

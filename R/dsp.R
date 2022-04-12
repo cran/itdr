@@ -12,12 +12,12 @@
 #' @export
 #' @details 
 #' Let \bold{A} and \bold{B} be two full rank matrices of size 
-#' \eqn{p \times q}. Suppose \eqn{\mathcal{S}(\bold{A})} and 
-#' \eqn{\mathcal{S}(\bold{B})} are the column subspaces of matrices
+#' \eqn{p \times q}. Suppose \eqn{\mathcal{S}(\textbf{A})} and 
+#' \eqn{\mathcal{S}(\textbf{B})} are the column subspaces of matrices
 #' \bold{A} and \bold{B}, respectively. 
 #' And, let \eqn{\lambda_i} 's with 
-#' \eqn{1\geq \lambda_1^2 \geq \lambda_2^2 \geq,\cdots,\lambda_p^2\geq 0}, 
-#' are the eigenvalues of the matrix \eqn{\bold{B}^T\bold{A}\bold{A}^T\bold{B}}.
+#' \eqn{1 \geq \lambda_1^2 \geq \lambda_2^2 \geq,\cdots,\lambda_p^2\geq 0}, 
+#' are the eigenvalues of the matrix \eqn{\textbf{B}^T\textbf{A}\textbf{A}^T\textbf{B}}.
 #' 
 #' (Trace correlation, Hotelling, 1936) \deqn{\gamma=\sqrt{\frac{1}{p}\sum_{i=1}^{p}\lambda_i^2}}
 #' 

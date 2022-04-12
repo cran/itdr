@@ -1,7 +1,7 @@
 Package: itdr
 Type: Package
 Title: Integral Transformation Methods for SDR in Regression
-Version: 1.0
+Version: 1.2.0
 Authors@R: c(person(given="Tharindu", family="P. De Alwis",
     role=c("aut","cre"),email="mktharindu87@siu.edu",
     comment = c(ORCID = "0000-0002-3446-0502")),
@@ -14,15 +14,15 @@ Description: The routine, itdr(), which allows to estimate the sufficient dimens
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Suggests: knitr, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: yes
-Packaged: 2021-07-23 05:00:32 UTC; User
+Packaged: 2022-04-12 02:04:32 UTC; User
 Author: Tharindu P. De Alwis [aut, cre]
     (<https://orcid.org/0000-0002-3446-0502>),
   S. Yaser Samadi [ctb, aut]
 Maintainer: Tharindu P. De Alwis <mktharindu87@siu.edu>
 Repository: CRAN
-Date/Publication: 2021-07-23 09:50:02 UTC
+Date/Publication: 2022-04-12 07:22:38 UTC

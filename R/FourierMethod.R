@@ -13,6 +13,7 @@
 #' @importFrom stats cov pchisq quantile rchisq rnorm
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' @importFrom graphics plot
+#' @import MASS
 FTM = function(x, y, hx, hy, h,
                space = c("mean", "pdf"),
                xdensity = c("normal", "kernel", "elliptic"),

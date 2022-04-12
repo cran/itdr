@@ -1,3 +1,4 @@
+#define USE_FC_LEN_T
 #include "itdr.h"
 #include <R.h>
 #include <Rmath.h>
@@ -8,21 +9,21 @@
 #include <math.h>
 #include <stddef.h> //for NULL
 
-static const R_CallMethodDef callMethods[]={
-  {"dlogden1",(DL_FUNC) &dlogden1,7},
-  {"dlogden3",(DL_FUNC) &dlogden3,8},
-  {"ITM_mean_norm",(DL_FUNC) &ITM_mean_norm,7},
-  {"ITM_mean",(DL_FUNC) &ITM_mean,8},
-  {"ITM_pdf_norm",(DL_FUNC) &ITM_pdf_norm,8},
-  {"ITM_pdf",(DL_FUNC) &ITM_pdf,9},
-  {"Fdlogden1",(DL_FUNC) &Fdlogden1,7},
-  {"Fdlogden3",(DL_FUNC) &Fdlogden3,8},
-  {"FM_mean_norm",(DL_FUNC) &FM_mean_norm,7},
-  {"FM_mean",(DL_FUNC) &FM_mean,8},
-  {"FM_pdf_norm",(DL_FUNC) &FM_pdf_norm,8},
-  {"FM_pdf",(DL_FUNC) &FM_pdf,9},
-  {NULL,NULL,0}
-};
+//static const R_CallMethodDef callMethods[]={
+//  {"dlogden1",(DL_FUNC) &dlogden1,7},
+//  {"dlogden3",(DL_FUNC) &dlogden3,8},
+//  {"ITM_mean_norm",(DL_FUNC) &ITM_mean_norm,7},
+//  {"ITM_mean",(DL_FUNC) &ITM_mean,8},
+  //  {"ITM_pdf_norm",(DL_FUNC) &ITM_pdf_norm,8},
+  //  {"ITM_pdf",(DL_FUNC) &ITM_pdf,9},
+  //  {"Fdlogden1",(DL_FUNC) &Fdlogden1,7},
+  //  {"Fdlogden3",(DL_FUNC) &Fdlogden3,8},
+  //  {"FM_mean_norm",(DL_FUNC) &FM_mean_norm,7},
+  //  {"FM_mean",(DL_FUNC) &FM_mean,8},
+  //  {"FM_pdf_norm",(DL_FUNC) &FM_pdf_norm,8},
+  //  {"FM_pdf",(DL_FUNC) &FM_pdf,9},
+  //  {NULL,NULL,0}
+//};
 
 static R_NativePrimitiveArgType dlogden1_t[] = {
   REALSXP,INTSXP,INTSXP,REALSXP,INTSXP,REALSXP,REALSXP

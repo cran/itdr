@@ -8,12 +8,12 @@
 #' @param m An integer specifying the dimension of the central mean reduction subspace to be tested.
 #' @details 
 #' The null and alternative hypothesis are
+#'  
+#' \deqn{H_0: d=m} \deqn{vs}  \deqn{H_a: d>m}
 #' 
-#' \eqn{H_0: d=m}   vs    \eqn{H_a: d>m}.
-#' 
-#' Cook's test statistics (Cook, 1998; Weng and Yin, 2018): 
+#' Weighted Chi-Square test statistics (Weng and Yin, 2018): 
 #' \deqn{\hat{\Lambda}=n\sum_{j=m+1}^{p}\hat{\lambda}_j,}
-#' where \eqn{\lambda_j}'s are the eigenvalues of \eqn{\widehat{\bold{V}}} where \eqn{\widehat{\bold{V}}} is defined under \emph{invFM()} function. 
+#' where \eqn{\lambda_j}'s are the eigenvalues of \eqn{\widehat{\textbf{V}}} where \eqn{\widehat{\textbf{V}}} is defined under \emph{invFM()} function. 
 #' 
 #' 
 #' Scaled test statistic (Bentler and Xie, 2000):
@@ -49,8 +49,6 @@
 #' Bentler P. M., and Xie, J. (2000). Corrections to Test Statistics in Principal Hessian Directions.
 #' \emph{Statistics and Probability Letters}. 47, 381-389.
 #'
-#' Cook R. D. (1998). \emph{Regression Graphics: Ideas for Studying Regressions Through Graphics}.Wiley.
-#'
 #' Weng J., and Yin X. (2018). Fourier Transform Approach for Inverse Dimension Reduction Method. \emph{Journal of Nonparametric Statistics}. 30, 4, 1029-0311.
 
 d.test <- function(y,x,m){
@@ -71,14 +69,14 @@ d.test <- function(y,x,m){
     text <- cat("\t Hypothesis Tests for selecting sufficient dimension (d)\n"
                 ,"Null: d=m\t"
                 ,"vs\t Alternative:","d>m \n \n",
-                "Test \t\t","Cook \t\t Scaled  \t Adjusted  \n"
+                "Test \t\t","W.Ch.Sq \t\t Scaled  \t Adjusted  \n"
                 ,"p-value \t",pvalue[1],"\t \t",pvalue[2],"\t\t",pvalue[3])
   }
   else{
     text <- cat("\t Hypothesis Tests for selecting sufficient dimension (d)\n"
         ,"Null: d=m\t"
     ,"vs\t Alternative:","d>m \n \n",
-    "Test \t\t","Cook \t\t Scaled  \t Adjusted  \n"
+    "Test \t\t","W.Ch.Sq \t\t Scaled  \t Adjusted  \n"
     ,"p-value \t",pvalue[1],"\t",pvalue[2],"\t\t",pvalue[3])
   }
   #return(text)

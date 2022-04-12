@@ -36,9 +36,7 @@ wx=function(y,x,d,wx_seq=seq(0.1,5,by=.1),wy=1,wh=1.5,B=500,space="mean"
   if(wx_seq[1]==0){
     stop("Error!: hx/sw2 Sequence should not start with zero")
   }
-  if(method!="FM" || method!="CM"){
-    stop("Error!:  method should be either 'FM' or 'CM'")
-  }
+  if(method=="FM" || method=="CM"){
   hx=wx_seq
   dj=matrix(0,nrow=B,ncol=1)
   dist.r=matrix(0,nrow=length(hx),ncol=1)
@@ -71,5 +69,8 @@ wx=function(y,x,d,wx_seq=seq(0.1,5,by=.1),wy=1,wh=1.5,B=500,space="mean"
   close(pb)
   disttab=data.frame(hx=wx_seq,dbar=dist.r)
   hx.hat=wx_seq[which.min(dist.r)]
+  }else{
+    stop("Error!:  method should be either 'FM' or 'CM'")
+  }
   list(dis_wx=disttab,wx.hat=hx.hat)
 }

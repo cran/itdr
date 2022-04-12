@@ -18,16 +18,16 @@
 #'  
 #'  \item{psi}{Estimation for \eqn{\widehat{\bold{\Psi}}}.}
 #' 
-#' @details 
-#' Let \eqn{(\bold{y}_i,\bold{x}_i), i =1,\cdots,n}, be a random sample, and assume that the dimension of \eqn{S_{E(\bold{Z} | \bold{Y})}} is known to be \emph{d}.
-#' Then, for a random finite sequence of \eqn{\bold{\omega}_j \in \mathcal{R}^p}, \eqn{j=1,\cdots,t} compute \eqn{\widehat{\bold{\psi}}(\bold{\omega}_j)} as follows. For more details see Weng and Yin (2018).  
-#' \deqn{\widehat{\bold{\psi}}(\bold{\omega}_j)=n^{-1}\sum_{k=1}^n \exp\{i\bold{\omega}_j^T\bold{y}_k\}\widehat{\bold{Z}}_k, j=1,\cdots,t,}
-#' where \eqn{\widehat{\bold{Z}}_j=\bold{\Sigma}_{x}^{-1/2}(\bold{x}_i-\overline{\bold{x}})}. Now, let
-#' \eqn{\bold{a}(\bold{\omega}_j)=Real(\widehat{\bold{\psi}}(\bold{\omega}_j))}, and \eqn{\bold{b}(\bold{\omega}_j)=Image(\widehat{\bold{\psi}}(\bold{\omega}_j))}. Then, 
-#' \eqn{\widehat{\bold{\Psi}}= (\bold{a}(\bold{\omega}_1),\bold{b}(\bold{\omega}_1),\cdots,\bold{a}(\bold{\omega}_t),\bold{b}(\bold{\omega}_t))}, for some \eqn{t > 0}, and the population kernel matrix is
-#' \eqn{\widehat{\bold{V}} = \widehat{\bold{\Psi}}\widehat{\bold{\Psi}}^T}. Finally, use the \emph{d}-leading eigenvectors of \eqn{\widehat{\bold{V}}} as an estimate for the central subspace.
+#' @details
+#' Let \eqn{(\textbf{y}_i,\textbf{x}_i), i =1,\cdots,n}, be a random sample, and assume that the dimension of \eqn{S_{E(\textbf{Z} | \textbf{Y})}} is known to be \emph{d}.
+#' Then, for a random finite sequence of \eqn{\boldsymbol{\omega}_j \in {R}^p}, \eqn{j=1,\cdots,t} compute \eqn{\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j)} as follows. For more details see Weng and Yin (2018).  
+#' \deqn{\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j)=n^{-1}\sum_{k=1}^n \exp( i \boldsymbol{\omega}_j^T\textbf{y}_k)\widehat{\textbf{Z}}_k, j=1,\cdots,t,}
+#' where \eqn{\widehat{\textbf{Z}}_j=\boldsymbol{\Sigma}_{x}^{-1/2}(\textbf{x}_i-\overline{\textbf{x}})}. Now, let
+#' \eqn{\textbf{a}(\boldsymbol{\omega}_j)=Real(\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j))}, and \eqn{\textbf{b}(\boldsymbol{\omega}_j)=Image(\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j))}. Then, 
+#' \eqn{\widehat{\boldsymbol{\Psi}}= (\textbf{a}(\boldsymbol{\omega}_1),\textbf{b}(\boldsymbol{\omega}_1),\cdots,\textbf{a}(\boldsymbol{\omega}_t),\textbf{b}(\boldsymbol{\omega}_t))}, for some \eqn{t > 0}, and the population kernel matrix is
+#' \eqn{\widehat{\textbf{V}} = \widehat{\boldsymbol{\Psi}}\widehat{\boldsymbol{\Psi}}^T}. Finally, use the \emph{d}-leading eigenvectors of \eqn{\widehat{\textbf{V}}} as an estimate for the central subspace.
 #' 
-#' \bold{Remark: }We use \emph{w} instead of \eqn{\bold{\omega}_1,\cdots,\bold{\omega}_t} in the \emph{invFM()} function. 
+#' \bold{Remark: }We use \emph{w} instead of \eqn{\boldsymbol{\omega}_1,\cdots,\boldsymbol{\omega}_t} in the \emph{invFM()} function. 
 #' @references 
 #' Weng J. and Yin X. (2018). Fourier Transform Approach for Inverse Dimension Reduction Method. \emph{Journal of Nonparametric Statistics}. 30, 4, 1029-0311.
 #' @examples 
@@ -64,7 +64,12 @@ invFM <- function(x,y,d,w,x_scale = TRUE){
 create_phi <- function(x,y,w){
   n = dim(x)[1]
   p = dim(x)[2]
-  iwy=complex(real=cos(w*y),imaginary=sin(w*y))
+  q=nrow(y)
+  if(is.null(q)==FALSE){
+    iwy=complex(real=cos(t(w)%*%y),imaginary=sin(t(w)%*%y))
+  }else{
+    iwy=complex(real=cos(w*y),imaginary=sin(w*y))
+  }
   im=matrix(iwy,nrow=n,ncol=p)
   z=stand(x)
   phi=apply(im*z,2,mean)
@@ -273,7 +278,7 @@ stand <- function(x){
   xb <- apply(x, 2, mean)
   xb <- t(matrix(xb, p, n))
   x1 <- x - xb
-  sigma <- t(x1) %*% (x1)/n
+  sigma <- cov(x1)#t(x1) %*% (x1)/n
   eva <- eigen(sigma)$values
   eve <- eigen(sigma)$vectors
   sigmamrt <- eve %*% diag(1/sqrt(eva)) %*% t(eve)

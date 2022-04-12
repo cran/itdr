@@ -32,11 +32,9 @@ wy=function(y,x,d,wx=0.1,wy_seq=seq(0.1,1,by=.1),wh=1.5,
                 B=500,xdensity="normal",method="FM"){
   space="pdf"
   if(wy_seq[1]==0){
-    stop("Error!: hy/st2 Sequence should not start with zero")
+    stop("Error!: h Sequence should not start zero")
   }
-  if(method!="FM" || method!="CM"){
-    stop("Error!:  method should be either 'FM' or 'CM'")
-  }
+  if(method=="FM" || method=="CM"){
   hy=wy_seq
   dj=matrix(0,nrow=B,ncol=1)
   dist.r=matrix(0,nrow=length(hy),ncol=1)
@@ -67,5 +65,8 @@ wy=function(y,x,d,wx=0.1,wy_seq=seq(0.1,1,by=.1),wh=1.5,
   close(pb)
   disttab=data.frame(hy=wy_seq,dbar=dist.r)
   hy.hat=wy_seq[which.min(dist.r)]
+  }else{
+    stop("Error!:  method should be either 'FM' or 'CM'")
+  }
   list(dis_wy=disttab,wy.hat=hy.hat)
 }

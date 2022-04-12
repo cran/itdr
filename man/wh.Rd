@@ -37,8 +37,8 @@ The outputs are a table of average bootstrap distances between two subspaces for
 \emph{wh()} estimates the bandwidth of the Gaussian kernel density estimation function if the distribution of the predictor variables is unknown.
 }
 \details{
-The kernel density estimation of \eqn{f_{\bold{x}}(\bold{x})} at a fixed point \eqn{\bold{x}_0} is defined as
-\deqn{\widehat{f}_{\bold{x}_0}(\bold{x})=(nh^p)^{-1}\sum_{\ell=1}^n G\left(\frac{\bold{x}_0-\bold{x}_{\ell}}{h}\right),}
+The kernel density estimation of \eqn{f_{\textbf{x}}(\textbf{x})} at a fixed point \eqn{\textbf{x}_0} is defined as
+\deqn{\widehat{f}_{\textbf{x}_0}(\textbf{x}_0)=(nh^p)^{-1}\sum_{\ell=1}^n G\left(\frac{\textbf{x}_0-\textbf{x}_{\ell}}{h}\right),}
 where \eqn{G(\cdot)} is a Gaussian kernel function and `h' is the bandwidth of the 
 kernel function. We denote this parameter as `wh` in all functions.
 }
