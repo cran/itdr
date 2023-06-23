@@ -13,7 +13,7 @@ The abiltiy of biochemical and haematolgical tests to predict recovery in peripa
 recumbent cows. NZ Veterinary Journal, 35, 126-133.
 }
 \usage{
-data(Recumbent)
+data(recumbent)
 }
 \description{
 For unknown reasons, pregnant dairy cows can become

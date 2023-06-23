@@ -6,7 +6,7 @@
 #'Hoggard, Ellison and Young (1987) analyze data collected at the Ruakura (N.Z.)
 #'Animal Health Laboratory on a sample of recumbent cows.
 #' @format A dataset with 9 columns and 435 rows.
-#' @usage data(Recumbent)
+#' @usage data(recumbent)
 #' @source 
 #' Clark, R. G., Henderson, H. V., Hoggard, G. K. Ellison, R. S. and Young, B. J. (1987). 
 #' The abiltiy of biochemical and haematolgical tests to predict recovery in periparturient 
