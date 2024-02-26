@@ -2,9 +2,10 @@
 % Please edit documentation in R/itdr.R
 \name{itdr}
 \alias{itdr}
-\title{Integral transformation Methods of Estimating Sufficient Dimension Reduction Subspaces in Regression.}
+\title{Integral Transformation Methods of Estimating SDR Subspaces in Regression.}
 \usage{
-itdr(y,x,d,wx=0.1,wy=1,wh=1.5,space="mean",xdensity="normal",method="FM")
+itdr(y,x,d,m=50,wx=0.1,wy=1,wh=1.5,space="mean",
+xdensity="normal",method="FM",x.scale=TRUE)
 }
 \arguments{
 \item{y}{The n-dimensional response vector.}
@@ -13,23 +14,27 @@ itdr(y,x,d,wx=0.1,wy=1,wh=1.5,space="mean",xdensity="normal",method="FM")
 
 \item{d}{An integer specifying the dimension of the sufficient dimension reduction subspace.}
 
-\item{wx}{(default 0.1). The tuning parameter for the predictor variables.}
+\item{m}{An integer specifying the number of omega values to use in invFM method.}
 
-\item{wy}{(default 1). The tuning parameter for the response variable.}
+\item{wx}{(default 0.1). Tuning parameter for predictor variables.}
 
-\item{wh}{(default 1.5). The bandwidth of the kernel density estimation function.}
+\item{wy}{(default 1). Tuning parameter for response variable.}
 
-\item{space}{(default ``mean''). The default is ``mean'' for the central mean subspace. Other option is ``pdf'' for estimating the central subspace.}
+\item{wh}{(default 1.5). Bandwidth of the kernel density estimation function.}
 
-\item{xdensity}{(default ``normal''). Density function of the predictor variables. 
-If ``normal'' then predictor variables are coming from a multivariate normal distribution. 
-If ``elliptic''  then predictors are coming from an elliptical contoured distribution. 
-If the distribution of the predictor variables is unknown, then use ``kernel'' to estimate the distribution 
-function using a kernel smoothing method.}
+\item{space}{(default ``mean''). Specifies whether to estimate the central mean subspace (``mean'') or the central subspace (``pdf'').}
 
-\item{method}{(default ``FM''). The integral transformation method. ``FM'' is for the Fourier trans-formation method (Zhu and Zeng 2006), 
-``CM'' for convolution transformation method (Zeng and Zhu 2010), 
-and ``iht'' for the iterative Hessian transformation method (Cook and Li 2002).}
+\item{xdensity}{(default ``normal''). Density function of predictor variables. Options are
+``normal''  for multivariate normal distribution,
+``elliptic''  for elliptical contoured distribution, or
+``kernel'' for unkown distribution estimated using kernel smoothing method.}
+
+\item{method}{(default ``FM''). Integral transformation method. ``FM'' for the Fourier transformation method (Zhu and Zeng 2006),
+``CM'' for convolution transformation method (Zeng and Zhu 2010),
+``iht'' for the iterative Hessian transformation method (Cook and Li 2002),
+and ``invFM'' for the Fourier transformation approach for inverse dimension reduction method (Weng and Yin, 2018).}
+
+\item{x.scale}{(default TURE). If TRUE, scale the predictor variables.}
 }
 \value{
 The outputs are a p-by-d matrix and a p-by-p matrix defined as follows.
@@ -37,56 +42,79 @@ The outputs are a p-by-d matrix and a p-by-p matrix defined as follows.
 \item{eta_hat}{The estimated p by d matrix, whose coloumns form a basis of the CMS/CS.}
 
 \item{M}{The estimated p by p candidate matrix.}
+
+\item{eigenvalues}{Eigenvalues of \eqn{\widehat{\bold{V}}} from the ``invFM'' method.}
+
+\item{psi}{Estimation for \eqn{\widehat{\bold{\Psi}}} from the ``invFM'' method.}
 }
 \description{
-\emph{itdr()} function computes a basis for sufficient dimension reduction subspaces
+The ``\emph{itdr()}'' function computes a basis for sufficient dimension reduction subspaces
 in regression.
 }
 \details{
-Let m(\bold{x})=E[y|\bold{X}=\bold{x}]. Then, integral transformation of gradient of the mean function m(\bold{x}) is defined as
+Let m(\bold{x})=E[y|\bold{X}=\bold{x}]. The ``\emph{itdr()}'' function computes the integral transformation of the gradient of the mean function m(\bold{x}), which is defined as
 \deqn{\boldsymbol\psi(\boldsymbol\omega) =\int \frac{\partial}{\partial \textbf{x}}m(\textbf{x}) W(\textbf{x},\boldsymbol\omega)f(\textbf{x})d\textbf{x},}
-where \eqn{W(\textbf{x},\boldsymbol\omega)} is said to be a non degenerate kernel function. Set \eqn{W(\textbf{x},\boldsymbol\omega)=\exp(i\boldsymbol\omega^T\textbf{x})} for 
-Fourier transformation (FM) method  and \eqn{W(\textbf{x},\boldsymbol\omega)=H(\textbf{x}-\boldsymbol\omega)=(2\pi\sigma_w^2)^{-p/2}\exp(-(\textbf{x}-\boldsymbol{\omega})^T(\textbf{x}-\boldsymbol\omega)/(2\sigma_w^2))} for convolution transformation (CM) method  
-where \eqn{W(\textbf{x},\boldsymbol\omega)} is an absolutely integrable function. 
-The candidate matrix to estimate the central mean subspace (CMS),
+where \eqn{W(\textbf{x},\boldsymbol\omega)} is a non degenerate kernel function and an absolutely integrable function. For Fourier transformation (FM) method and for convolution transformation (CM) method \eqn{W(\textbf{x},\boldsymbol\omega)=\exp(i\boldsymbol\omega^T\textbf{x})} 
+and \eqn{W(\textbf{x},\boldsymbol\omega)=H(\textbf{x}-\boldsymbol\omega)=(2\pi\sigma_w^2)^{-p/2}\exp(-(\textbf{x}-\boldsymbol{\omega})^T(\textbf{x}-\boldsymbol\omega)/(2\sigma_w^2))} 
+where is \eqn{\sigma_w^2} is the turning parameter for predictor variables.
+The candidate matrix to estimate the central mean subspace (CMS) is
 \deqn{\textbf{M}_{CMS}=\int \boldsymbol\psi(\boldsymbol\omega) \boldsymbol\psi(\boldsymbol\omega)^T K(\boldsymbol\omega)d\boldsymbol\omega, }
-where \eqn{K(\boldsymbol{\omega})=(2\pi \sigma_w^2)^{-p/2}\exp{(-||\boldsymbol{\omega}||}/2\sigma_w^2)} under 'FM', and \eqn{K(\boldsymbol{\omega})=1} under `CM`. 
-Here, \eqn{\sigma_w^2} is a tuning parameter and it refers as "tuning parameter for the predictor variables" and denoted by `wx` in all functions.
+where \eqn{K(\boldsymbol{\omega})=(2\pi \sigma_w^2)^{-p/2}\exp{(-||\boldsymbol{\omega}||}/2\sigma_w^2)} under ``FM'', and \eqn{K(\boldsymbol{\omega})=1} under ``CM''.
+Here, \eqn{\sigma_w^2} is a tuning parameter and it refers as "tuning parameter for the predictor variables" and denoted by ``wx'' in all functions.
 
 
-Let \eqn{\{T_v(y)=H(y,v),~ for~~ y,v\in \mathcal{R}\}} be the family of transformations for the response variable. That is, \eqn{v \in \mathcal{R}}, the mean 
+Let \eqn{\{T_v(y)=H(y,v),~ for~~ y,v\in \mathcal{R}\}} be the family of transformations for the response variable. That is, \eqn{v \in \mathcal{R}}, the mean
 response of \eqn{T_v(y)} is \eqn{m(\boldsymbol{\omega},v)=E[H(y,v)\vert \textbf{X}=\textbf{x}]}. Then, integral transformation for the gradient of
 \eqn{m(\boldsymbol{\omega},v)} is defined as
 \deqn{\boldsymbol{\psi}(\boldsymbol{\omega},v)=\int \frac{\partial}{\partial \textbf{x}}m(\textbf{x},v) W(\textbf{x},\boldsymbol{\omega})f(\textbf{x})d\textbf{x},}
-where \eqn{W(\textbf{x},\boldsymbol{\omega})} is the define as above. Then, the 
-candidate matrix for the central subspace (CS) is defined as
+where \eqn{W(\textbf{x},\boldsymbol{\omega})} is define as above. Then, for estimating the central subspace (CS) the
+candidate matrix is defined as
 \deqn{\textbf{M}_{CS}=\int H(y_1,v)H(y_2,v)dv \int \boldsymbol{\psi}(\boldsymbol{\omega}) \bar{\boldsymbol{\psi}}(\boldsymbol{\omega})^T K(\boldsymbol{\omega})d\boldsymbol{\omega},}
-where \eqn{K(\boldsymbol{\omega})} is the same as above, and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp(v^2/(2\sigma_t^2))} under  `FM`, 
-and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp((y-v)^2/(2\sigma_t^2))} under `CM`.
-Here \eqn{\sigma_t^2} is a tuning parameter and it refers as the "tuning parameter for the response variable" and is denote by `wy` in all functions.
+where \eqn{K(\boldsymbol{\omega})} is the same as above, and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp(v^2/(2\sigma_t^2))} under  ``FM'',
+and \eqn{H(y,v)=(2\pi \sigma_t^2)^{-1/2}\exp((y-v)^2/(2\sigma_t^2))} under ``CM''.
+Here \eqn{\sigma_t^2} is a tuning parameter and it refers as the "tuning parameter for the response variable" and is denote by ``wy'' in all functions.
 
-\bold{Remark:} There is only one tuning parameter in the candidate matrix for the estimate of the CMS, and there are two tuning
-parameters in the candidate matrix for the estimate of the CS.
+
+\bold{Remark:} There is only one tuning parameter in the candidate matrix for estimating of the CMS, and there are two tuning
+parameters in the candidate matrix for estimating of the CS.
+
+\bold{``invFM'' method:}
+
+Let \eqn{(\textbf{y}_i,\textbf{x}_i), i =1,\cdots,n}, be a random sample, and assume that the dimension of \eqn{S_{E(\textbf{Z} | \textbf{Y})}} is known to be \emph{d}.
+Then, for a random finite sequence of \eqn{\boldsymbol{\omega}_j \in {R}^p}, \eqn{j=1,\cdots,t}, compute \eqn{\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j)} as follows (Weng and Yin, 2018):
+\deqn{\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j)=n^{-1}\sum_{k=1}^n \exp( i \boldsymbol{\omega}_j^T\textbf{y}_k)\widehat{\textbf{Z}}_k, j=1,\cdots,t,}
+where \eqn{\widehat{\textbf{Z}}_j=\boldsymbol{\Sigma}_{x}^{-1/2}(\textbf{x}_i-\overline{\textbf{x}})}. Now, let
+\eqn{\textbf{a}(\boldsymbol{\omega}_j)=Real(\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j))}, and \eqn{\textbf{b}(\boldsymbol{\omega}_j)=Image(\widehat{\boldsymbol{\psi}}(\boldsymbol{\omega}_j))}. Then,
+\eqn{\widehat{\boldsymbol{\Psi}}= (\textbf{a}(\boldsymbol{\omega}_1),\textbf{b}(\boldsymbol{\omega}_1),\cdots,\textbf{a}(\boldsymbol{\omega}_t),\textbf{b}(\boldsymbol{\omega}_t))}, for some \eqn{t > 0}, and the population kernel matrix is
+\eqn{\widehat{\textbf{V}} = \widehat{\boldsymbol{\Psi}}\widehat{\boldsymbol{\Psi}}^T}. Finally, use the \emph{d}-leading eigenvectors of \eqn{\widehat{\textbf{V}}} as an estimate for the central subspace.
+
+\bold{Remark: }We use \emph{w} instead of \eqn{\boldsymbol{\omega}_1,\cdots,\boldsymbol{\omega}_t} in the \emph{itdr()} function.
 }
 \examples{
-library(itdr)
 data(automobile)
 head(automobile)
-automobile.na=na.omit(automobile)
-wx=.14; wy=.9;wh=1.5;d=2;p=13
-df=cbind(automobile[,c(26,10,11,12,13,14,17,19,20,21,22,23,24,25)])
-dff=as.matrix(df)
-automobi=dff[complete.cases(dff),]
-y=automobi[,1]
-x=automobi[,c(2:14)]
-xt=scale(x)
-fit.F_CMS=itdr(y,xt,d,wx,wy,wh,space="pdf",xdensity = "normal",method="FM")
-round(fit.F_CMS$eta_hat,2)
+automobile.na <- na.omit(automobile)
+wx <- .14
+wy <- .9
+wh <- 1.5
+d <- 2
+p <- 13
+df <- cbind(automobile[, c(26, 10, 11, 12, 13, 14, 17, 19, 20, 21, 22, 23, 24, 25)])
+dff <- as.matrix(df)
+automobi <- dff[complete.cases(dff), ]
+y <- automobi[, 1]
+x <- automobi[, c(2:14)]
+xt <- scale(x)
+fit.F_CMS <- itdr(y, xt, d, wx, wy, wh, space = "pdf", xdensity = "normal", method = "FM")
+round(fit.F_CMS$eta_hat, 2)
 
 }
 \references{
-Cook R. D., and Li, B., (2002). 
+Cook R. D. and Li, B., (2002).
 Dimension Reduction for Conditional Mean in Regression. \emph{The Annals of Statistics}. 30, 455-474.
+
+Weng J. and Yin X. (2018).
+Fourier Transform Approach for Inverse Dimension Reduction Method. \emph{Journal of Nonparametric Statistics}. 30, 4, 1029-0311.
 
 Zeng P. and Zhu Y. (2010).
 An Integral Transform Method for Estimating the Central Mean and Central Subspaces. \emph{Journal of Multivariate Analysis}. 101, 1, 271--290.

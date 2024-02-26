@@ -9,12 +9,13 @@
 ## Peng Zeng @ Auburn University
 ## 03-30-2010
 ########################################################################
-#' @useDynLib itdr, .registration = TRUE, .fixes = "C_"
-#' @importFrom stats cov pchisq quantile rchisq rnorm
-#' @importFrom utils setTxtProgressBar txtProgressBar
-#' @importFrom graphics plot
-#' @import MASS
-FTM <- function(x, y, hx, hy, h,
+#' @useDynLib itdr dlogden1
+#' @useDynLib itdr dlogden3
+#' @useDynLib itdr ITM_mean_norm
+#' @useDynLib itdr ITM_mean
+#' @useDynLib itdr ITM_pdf_norm
+#' @useDynLib itdr ITM_pdf
+ITM <- function(x, y, hx, hy, h,
                 space = c("mean", "pdf"),
                 xdensity = c("normal", "kernel", "elliptic"),
                 out = FALSE, outden = FALSE) {
@@ -41,11 +42,11 @@ FTM <- function(x, y, hx, hy, h,
   } else {
     denidx <- 1
     f0gk <- switch(xdensity,
-      kernel = .C("Fdlogden1", as.double(xstd), as.integer(n),
+      kernel = .C("dlogden1", as.double(xstd), as.integer(n),
         as.integer(p), as.double(h), as.integer(outden),
         f0 = double(n), dlogf = double(n * p)
       ),
-      elliptic = .C("Fdlogden3", as.double(xstd), as.integer(n),
+      elliptic = .C("dlogden3", as.double(xstd), as.integer(n),
         as.integer(p), as.double(h), as.integer(outden),
         f0 = double(n), rdlogf = double(n), dlogf = double(n * p)
       )
@@ -61,22 +62,22 @@ FTM <- function(x, y, hx, hy, h,
 
   Mfunindex <- paste(space, denidx, sep = "")
   M <- switch(Mfunindex,
-    mean0 = .C("FM_mean_norm", as.double(xstd), as.double(y),
+    mean0 = .C("ITM_mean_norm", as.double(xstd), as.double(y),
       as.double(hx), as.integer(n), as.integer(p),
       as.integer(out),
       M = double(p * p)
     )$M,
-    mean1 = .C("FM_mean", as.double(xstd), as.double(gk),
+    mean1 = .C("ITM_mean", as.double(xstd), as.double(gk),
       as.double(y), as.double(hx), as.integer(n),
       as.integer(p), as.integer(out),
       M = double(p * p)
     )$M,
-    pdf0 = .C("FM_pdf_norm", as.double(xstd), as.double(y),
+    pdf0 = .C("ITM_pdf_norm", as.double(xstd), as.double(y),
       as.double(hx), as.double(hy), as.integer(n), as.integer(p),
       as.integer(out),
       M = double(p * p)
     )$M,
-    pdf1 = .C("FM_pdf", as.double(xstd), as.double(gk),
+    pdf1 = .C("ITM_pdf", as.double(xstd), as.double(gk),
       as.double(y), as.double(hx), as.double(hy), as.integer(n),
       as.integer(p), as.integer(out),
       M = double(p * p)
@@ -108,12 +109,41 @@ x.standardize <- function(x) {
   list(x.std = x.std, Sinvsqrt = Sinvsqrt)
 }
 
-dist.space <- function(A, B) {
+
+pm.dist <- function(A, B) {
   A.orth <- qr.Q(qr(A))
   B.orth <- qr.Q(qr(B))
 
   BAAB <- t(B.orth) %*% A.orth %*% t(A.orth) %*% B.orth
   BAAB.eig <- eigen(BAAB, only.values = T)$values
+  r <- 1 - sqrt(mean(BAAB.eig))
+  d <- max(svd(B.orth %*% t(B.orth) - A.orth %*% t(A.orth))$d)
 
-  list(r = 1 - sqrt(mean(BAAB.eig)), q = 1 - sqrt(prod(BAAB.eig)))
+  list(r = r, d = d)
 }
+
+
+rmixnorm <- function(n, p, percent, cvec) {
+  if (length(percent) != NCOL(cvec)) {
+    stop("The length of percent and cvec are not equal!")
+  }
+
+  if (p != NROW(cvec)) {
+    stop("The dimension of cvec is not equal to p!")
+  }
+
+  ncut <- c(0, n * cumsum(percent / sum(percent)))
+  x <- matrix(rnorm(n * p), nrow = n, ncol = p)
+  for (i in 1:length(percent))
+  {
+    index <- (ncut[i] + 1):(ncut[i + 1])
+    x[index, ] <- sweep(x[index, ], 2, cvec[, i], "+")
+  }
+
+  x
+}
+
+
+########################################################################
+##                         END OF THE FILE                            ##
+########################################################################

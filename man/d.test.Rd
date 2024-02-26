@@ -2,7 +2,7 @@
 % Please edit documentation in R/d.test.R
 \name{d.test}
 \alias{d.test}
-\title{Testing methods for selecting dimension of the central mean subspace.}
+\title{Dimension Selection Testing Methods for the Central Mean Subspace.}
 \usage{
 d.test(y,x,m)
 }
@@ -14,47 +14,48 @@ d.test(y,x,m)
 \item{m}{An integer specifying the dimension of the central mean reduction subspace to be tested.}
 }
 \value{
-The \emph{d.test()} returns a table of p-values for each test.
+The \emph{d.test()} function returns a table of p-values for each test.
 }
 \description{
-\emph{d.test()} provides p-values for the hypothesis tests for the dimension of the subpsace based on three test statistics: Cook's, Scaled, and Adjusted test statistics, using Fourier transform approach for inverse dimension reduction method.
+The ``\emph{d.test()}'' function provides p-values for the hypothesis tests for the dimension of the subpsace. It employs three test statistics: Cook's test, Scaled test, and Adjusted test, using Fourier transform approach for inverse dimension reduction method.
 }
 \details{
 The null and alternative hypothesis are
- 
-\deqn{H_0: d=m} \deqn{vs}  \deqn{H_a: d>m}
 
-Weighted Chi-Square test statistics (Weng and Yin, 2018): 
+\deqn{H_0: d=m}   \deqn{H_a: d>m}
+
+1. Weighted Chi-Square test statistics (Weng and Yin, 2018):
 \deqn{\hat{\Lambda}=n\sum_{j=m+1}^{p}\hat{\lambda}_j,}
-where \eqn{\lambda_j}'s are the eigenvalues of \eqn{\widehat{\textbf{V}}} where \eqn{\widehat{\textbf{V}}} is defined under \emph{invFM()} function. 
+where \eqn{\lambda_j}'s are the eigenvalues of \eqn{\widehat{\textbf{V}}}, defined under the ``\emph{invFM()}'' function.
 
 
-Scaled test statistic (Bentler and Xie, 2000):
+2. Scaled test statistic (Bentler and Xie, 2000):
 \deqn{\overline{T}_m=[trace(\hat{\Omega}_n)/p^{\star}]^{-1}n\sum_{j=m+1}^{p}\hat{\lambda}_j \sim \mathcal{X}^2_{p^{\star}},}
-where \eqn{\hat{\Omega}_n} is a covariance matrix (Bentler and Xie, 2000), and \eqn{p^{\star} = (p-m)(2t-m)}.
+where \eqn{\hat{\Omega}_n} is a covariance matrix, and \eqn{p^{\star} = (p-m)(2t-m)}.
 
 
-Adjusted test statistic (Bentler and Xie, 2000):
+3. Adjusted test statistic (Bentler and Xie, 2000):
 \deqn{\tilde{T}_m=[trace(\hat{\Omega}_n)/d^{\star}]^{-1}n\sum_{j=m+1}^{p}\hat{\lambda}_j \sim \mathcal{X}^2_{d^{\star}},}
-where \eqn{\hat{\Omega}_n} is a covariance matrix (Bentler and Xie, 2000), and \eqn{d^{\star} = [trace(\hat{\Omega}_n)]^{2}/trace(\hat{\Omega}_n^2)} .
+where \eqn{d^{\star} = [trace(\hat{\Omega}_n)]^{2}/trace(\hat{\Omega}_n^2)} .
 }
 \examples{
-library(itdr)
-data(PDB)
-colnames(PDB)=NULL
-p=15
-df=PDB[,c(79,73,77,103,112,115,124,130,132,145,149,151,153,155,167,169)]
-dff=as.matrix(df)
-planingdb=dff[complete.cases(dff),]
-y=planingdb[,1]
-x=planingdb[,c(2:(p+1))]
-x=x+0.5
-xt=cbind(x[,1]^(.33),x[,2]^(.33),x[,3]^(.57),x[,4]^(.33),x[,5]^(.4),
-x[,6]^(.5),x[,7]^(.33),x[,8]^(.16),x[,9]^(.27),x[,10]^(.5),
-x[,11]^(.5),x[,12]^(.33),x[,13]^(.06),x[,14]^(.15),x[,15]^(.1))
-m=1
-W=sapply(1,rnorm)
-d.test(y,x,m)
+data(pdb)
+colnames(pdb) <- NULL
+p <- 15
+df <- pdb[, c(79, 73, 77, 103, 112, 115, 124, 130, 132, 145, 149, 151, 153, 155, 167, 169)]
+dff <- as.matrix(df)
+planingdb <- dff[complete.cases(dff), ]
+y <- planingdb[, 1]
+x <- planingdb[, c(2:(p + 1))]
+x <- x + 0.5
+xt <- cbind(
+  x[, 1]^(.33), x[, 2]^(.33), x[, 3]^(.57), x[, 4]^(.33), x[, 5]^(.4),
+  x[, 6]^(.5), x[, 7]^(.33), x[, 8]^(.16), x[, 9]^(.27), x[, 10]^(.5),
+  x[, 11]^(.5), x[, 12]^(.33), x[, 13]^(.06), x[, 14]^(.15), x[, 15]^(.1)
+)
+m <- 1
+W <- sapply(1, rnorm)
+d.test(y, x, m)
 
 }
 \references{

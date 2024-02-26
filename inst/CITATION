@@ -4,13 +4,7 @@ note <- sprintf("R package version %s", meta$Version)
 bibentry(bibtype = "Manual",
          title = "{itdr}: Integral Transformation Methods for SDR in Regression",
          author = c(person("Tharindu P.", "De Alwis"),
-                    person("S. Yaser", "Samadi")),
-         year = year,
-         note = note,
+                    person("S. Yaser", "Samadi"), person("Jiaying","Weng")),
+         year = 2021,
          url = " https://CRAN.R-project.org/package=itdr")
-         textVersion =
-         paste0("Tharindu P. De ALwis,",
-                "S. Yaser Samadi (",
-                year,
-                "). itdr: Integral Transformation Methods for SDR in Regression. ",
-                note, ".")
+         

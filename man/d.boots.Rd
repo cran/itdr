@@ -2,9 +2,9 @@
 % Please edit documentation in R/d.boost.R
 \name{d.boots}
 \alias{d.boots}
-\title{Bootstrap estimation for dimension (d) of sufficient dimension reduction subspaces.}
+\title{Bootstrap Estimation for Dimension (d) of Sufficient Dimension Reduction Subspaces.}
 \usage{
-d.boots(y,x,wx=0.1,wy=1,wh=1.5,B=500,Plot=FALSE,space="mean"
+d.boots(y,x,wx=0.1,wy=1,wh=1.5,B=500,var_plot=FALSE,space="mean"
                                         ,xdensity="normal",method="FM")
 }
 \arguments{
@@ -12,7 +12,7 @@ d.boots(y,x,wx=0.1,wy=1,wh=1.5,B=500,Plot=FALSE,space="mean"
 
 \item{x}{The design matrix of the predictors with dimension n-by-p.}
 
-\item{wx}{(default 0.1). The tuning parameter for the predictor variables.}
+\item{wx}{(default 0.1). The tuning parameter for predictor variables.}
 
 \item{wy}{(default 1). The tuning parameter for the response variable.}
 
@@ -20,21 +20,19 @@ d.boots(y,x,wx=0.1,wy=1,wh=1.5,B=500,Plot=FALSE,space="mean"
 
 \item{B}{(default 500). Number of bootstrap samples.}
 
-\item{Plot}{(default FALSE). If TRUE, then it provides the dimension variability plot.}
+\item{var_plot}{(default FALSE). If TRUE, it provides the dimension variability plot.}
 
 \item{space}{(default ``mean''). The defalult is ``mean'' for the central mean subspace. Other option is ``pdf'' for estimating the central subspace.}
 
-\item{xdensity}{(default ``normal''). Density function of the predictor variables. 
-If ``normal'' then predictor variables are coming from a multivariate normal distribution. 
-If ``elliptic''  then predictors are coming from an elliptical contoured distribution function. 
-If the distribution of the predictor variables is unknown, then use ``kernel'' to estimate the distribution 
-function using a kernel smoothing method.}
+\item{xdensity}{(default ``normal''). Density function of predictor variables.
+Options are ``normal'' for multivariate normal distribution, ``elliptic''  for elliptical contoured distribution function, or ``kernel'' for estimating the distribution
+using kernel smoothing.}
 
-\item{method}{(default ``FM''). The integral transformation method. ``FM'' for Fourier trans-formation method (Zhu and Zeng 2006), and 
-``CM'' for convolution transformation method (see Zeng and Zhu 2010).}
+\item{method}{(default ``FM''). The integral transformation method. ``FM'' for Fourier trans-formation method (Zhu and Zeng 2006), and
+``CM'' for convolution transformation method (Zeng and Zhu 2010).}
 }
 \value{
-The outputs are a table of average bootstrap distances between two subspaceses for each candidate value of \emph{d} and the estimated value for \emph{d}.
+The outputs includes a table of average bootstrap distances between two subspaceses for each candidate value of \emph{d} and the estimated value for \emph{d}.
 \item{dis_d}{A table of average bootstrap  distances for each candidate value of \emph{d}.}
 
 \item{d.hat}{The estimated value for \eqn{d}.}
@@ -42,21 +40,20 @@ The outputs are a table of average bootstrap distances between two subspaceses f
 \item{plot}{Provides the dimension variability plot if \emph{plot=TRUE}.}
 }
 \description{
-\emph{d.boots()} estimates the dimension of the central mean subspace and the central subspaces in regression.
+The function ``\emph{d.boots()}'' estimates the dimension of the central mean subspace and the central subspaces in regression.
 }
 \examples{
 \donttest{
-library(itdr)
 # Use dataset available in itdr package
 data(automobile)
 head(automobile)
-automobile.na=na.omit(automobile)
-# prepare response and predictor variables 
-auto_y=log(automobile.na[,26])
-auto_xx=automobile.na[,c(10,11,12,13,14,17,19,20,21,22,23,24,25)]
-auto_x=scale(auto_xx) # Standardize the predictors
+automobile.na <- na.omit(automobile)
+# prepare response and predictor variables
+auto_y <- log(automobile.na[, 26])
+auto_xx <- automobile.na[, c(10, 11, 12, 13, 14, 17, 19, 20, 21, 22, 23, 24, 25)]
+auto_x <- scale(auto_xx) # Standardize the predictors
 # call to the d.boots() function with required arguments
-d_est=d.boots(auto_y,auto_x,Plot=TRUE,space="pdf",xdensity = "normal",method="FM")
-auto_d=d_est$d.hat
+d_est <- d.boots(auto_y, auto_x, var_plot = TRUE, space = "pdf", xdensity = "normal", method = "FM")
+auto_d <- d_est$d.hat
 }
 }

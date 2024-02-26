@@ -15,26 +15,26 @@ knitr::opts_chunk$set(
 ```
 ## Overview
 
-**itdr** is a system for estimating a basis of the central and central mean subspaces or selecting sufficient dimension reduction variables in regression by using integral transformation methods. This  `vignette` demonstrate the usage of functions in **itdr** package over `automobile`, `Recumbent` ,`PDB`, `prostate`, and `raman` datasets.
+**itdr** is a system for estimating a basis of the central and central mean subspaces or selecting sufficient dimension reduction variables in regression using integral transformation methods. This  `vignette` demonstrate the usage of functions within the **itdr** package across various datasets, including `automobile`, `recumbent` ,`pdb`, `prostate`, and `raman`.
 
 ## Chapter 1: Installation 
 ### 1.1: Install **itdr** package
 
-Installation can be done for **itdr** R package in three ways.
+The **itdr** R package can be installed in three ways:
 
-* From the Comprehensive R Archive Network (CRAN): Use `install.packages()` function in R. Then, import `itdr` package into working session using `library()` function. That is,
+* From the Comprehensive R Archive Network (CRAN): Utilize the `install.packages()` function in R. Then, import the `itdr` package into the working session using the `library()` function. That is,
 ```{r eval=FALSE, include=FALSE}
 install.packages("itdr")
 library(itdr)
 ```
 
-* From binary source package: Use `intall.package()` function in R. Then, import **itdr** package into working session using `library()` function. That is,
+* From the binary source package: Use the `intall.package()` function in R. Then, import the **itdr** package into the working session using the `library()` function. That is,
 ```{r eval=FALSE, include=TRUE}
 install.packages("~/itdr.zip")
 library(itdr)
 ```
 
-* From GitHub: Use `install_github()` function in R `devtools` package as follows.
+* From GitHub: Use the `install_github()` function in R `devtools` package as follows.
  
 ```{r eval=FALSE, include=TRUE}
 library(devtools)
@@ -42,223 +42,234 @@ install_github("TharinduPDeAlwis/itdr")
 library(itdr)
 ```
 
-## Chpater 2: Functions related to the Fourier and Convolution transformation methods to estimate Sufficient Dimension Reduction (SDR) subspaces
+## Chpater 2: Functions for Fourier and Convolution Transformation Methods in Sufficient Dimension Reduction (SDR) Subspace Estimation
 
-In this section, we describe the functions in **itdr** package which use Fourier transformation method to estimate sufficient dimension reduction (SDR) subspaces in regression. We only demonstrate the Fourier transformation method. However, by passing the argument `method="CM"` to the `itdr()` function, convolution transformation method can be obtained. 
+This section provides an overview of the functions within the **itdr** package that utilize the Fourier transformation method to estimate sufficient dimension reduction (SDR) subspaces in regression.  Specifically, we focus on the Fourier transformation method. However, by passing the argument `method="CM"` to the `itdr()` function, the convolution transformation method can be employed. 
 
-Before estimating the SDR subspaces, it is required to estimate the dimension (d) of the SDR subspace and tuning parameters `sw2`, and `st2`.  In Section 2.1, the estimation of dimension (d) is demonstrated.  The estimation of the tuning parameter `sw2` for both subspaces, i.e., for the central subspace (CS) and the central mean subspace (CMS), is explained in Section 2.2.1. Moreover, the estimation of `st2` for the central subspace (CS) is explained in Section 2.2.2. Finally, the use of `itdr()` function to estimate the central subspace is demonstrated in Section 2.3.
+Before estimating the SDR subspaces, it is essential to determine the dimension (d) of the SDR subspace and tuning parameters `sw2`, and `st2`.  Section 2.1 demonstrates the estimation of dimension (d) is demonstrated.  The estimation of the tuning parameter `sw2` for both the central subspace (CS) and the central mean subspace (CMS), is explained in Section 2.2.1. Moreover, Section 2.2.2 outlines the estimation of `st2` for the central subspace (CS).   Finally, The practical application of the itdr() function for estimating the central subspace is provided in Section 2.3.
 
 ### 2.1: Estimating the dimension (d) of sufficient dimension reduction (SDR) subspaces
 
-Bootstrap estimation procedure is used to estimate the unknown dimension (d) of sufficient dimension reduction subspaces, for more details see Zhu and Zeng (2006).  The `d.boots()` function can be used to estimate the dimension (d). Now, let's estimate the dimension `d` of the central subspace of the `automobile` dataset, here we use the response variable y, and the predictor variables x as mentioned in Zhu and Zeng (2006). We  need to pass the arguments to the `d.boots()` function as `space="pdf"` to estimate the CS, `xdensity="normal"` for assuming normal density for the predictors, and `method="FM"` for useing the Fourier transformation method.
+A bootstrap estimation procedure is employed to estimate the unknown dimension (d) of sufficient dimension reduction subspaces, as detailed in Zhu and Zeng (2006).  The `d.boots()` function can be used to implement this estimation. To estimate the dimension `(d)` of the central subspace of the `automobile` dataset, with response variable $y$, and predictor variables $x$ as specified in Zhu and Zeng (2006), the following arguments are passed to the `d.boots()` function: `space="pdf"` to estimate the CS, `xdensity="normal"` for assuming normal density for the predictors, and `method="FM"` for utilizing the Fourier transformation method.
 ```{r eval=TRUE, include=TRUE}
-    #Install package
-    #intall.packages("itdr")
-    library(itdr)
-    data(automobile)
-    automobile.na=na.omit(automobile)
-    #prepare response and predictor variables
-    auto_y=log(automobile.na[,26])
-    auto_xx=automobile.na[,c(10,11,12,13,14,17,19,20,21,22,23,24,25)]
-    auto_x=scale(auto_xx) #Standardize the predictors
-    #call to the d.boots() function with required #arguments
-    d_est=d.boots(auto_y,auto_x,Plot=TRUE,space="pdf",
-    xdensity = "normal",method="FM")
-    auto_d=d_est$d.hat 
-    auto_d
-    
+library(itdr)
+data(automobile)
+automobile.na <- na.omit(automobile)
+# prepare response and predictor variables
+auto_y <- log(automobile.na[, 26])
+auto_xx <- automobile.na[, c(10, 11, 12, 13, 14, 17, 19, 20, 21, 22, 23, 24, 25)]
+auto_x <- scale(auto_xx) # Standardize the predictors
+# call to the d.boots() function with required #arguments
+d_est <- d.boots(auto_y, auto_x,
+  var_plot = TRUE, space = "pdf",
+  xdensity = "normal", method = "FM"
+)
+auto_d <- d_est$d.hat
+auto_d
 ```
 
 Here, the estimate of the dimension of the central subspace for 'automobile' data is 2, i.e., d_hat=2.
 
 ### 2.2: Estimating tuning parameters and bandwidth parameters for Gaussian kernel density estimation
 
-There are two tuning parameters that need to be estimated in the process of estimating SDR subspaces using the Fourier method: namely `sw2` and `st2`. The `sw2` required in both the central mean (CMS) and the central subspace (CS). However, the `st2` required only in the central subspace. The code in Section 2.2.1 demonstrates the use of function `wx()` to estimate the tuning parameter `sw2`, and the use of the function `wy()` to estimate the tuning parameter `st2` is described in Section 2.2.2.
+In the process of estimating SDR subspaces using the Fourier method, two crucial parameters need to be determined: `sw2` and `st2`. The `sw2`.  While `sw2` is required for both the central mean (CMS) and the central subspace (CS), `st2` is only necessary for the central subspace. The code in Section 2.2.1 demonstrates the use of function `wx()` to estimate the tuning parameter `sw2`, while Section 2.2.2 elaborates on using the `wy()` function to estimate the tuning parameter `st2`.
 
 ### 2.2.1: Estimate `sw2`
 
-To estimate the tuning parameter `sw2`, we can use `wx()` function with the subspace option either `space="pdf"` for the CS and `space="mean"` for the CMS. During the estimation process, the other parameters are fixed. The following R code chunk demonstrates the estimation of `sw2` for the central subspace.
+To estimate the tuning parameter `sw2`, the `wx()` function is utilized with the subspace option set to either `space="pdf"` for the CS and `space="mean"` for the CMS. Other parameters remain fixed during the estimation process. The following R code chunk demonstrates the estimation of `sw2` for the central subspace.
 
 ```{r eval=TRUE, include=TRUE}
-auto_d=2 #The estimated value from Section 2.1
-set.seed(123)
-auto_sw2=wx(auto_y,auto_x,auto_d,wx_seq=seq(0.05,1,by=0.01),B=500,space="pdf",method="FM")
+auto_d <- 2 # The estimated value from Section 2.1
+candidate_list<-seq(0.05, 1, by = 0.01)
+auto_sw2 <- hyperPara(auto_y, auto_x, auto_d, range = candidate_list,xdensity = "normal", B = 500, space = "pdf", method = "FM", hyper = "wx")
 auto_sw2$wx.hat # we get the estimator for sw2 as 0.09
 ```
 
 ### 2.2.2: Estimate `st2`
 
-To estimate the tuning parameter `st2`, we can use `wy()` function. Here, the other parameters are fixed. Notice that we do not need to specify the `space`, because the tuning parameter `st2` only required for the central subspace (CS).
+The estimate of the tuning parameter `st2`, the `wy()` function is employed. Other parameters are fixed during the estimation. Notice that, there is no need to specify the `space`, because the tuning parameter `st2` exclusively required for the central subspace (CS).
 ```{r eval=TRUE, include=TRUE}
-auto_d=2 # Estimated value from Section 2.1
-set.seed(107)
-auto_st2=wy(auto_y,auto_x,auto_d,wx=0.1,wy_seq=seq(0.1,1,by=0.1),xdensity="normal",method="FM")
-auto_st2$wy.hat # we get the estimator for st2=0.9 
+auto_d <- 2 # Estimated value from Section 2.1
+auto_st2 <- hyperPara(auto_y, auto_x, auto_d, wx = 0.1, range = seq(0.1, 1, by = 0.1), xdensity = "normal", method = "FM", hyper = "wy")
+auto_st2$wy.hat # we get the estimator for st2=0.9
 ```
 ### 2.2.3: Estimate the bandwidth (`h`) of the Gaussian kernel density function
 
-If the distribution function of the predictor variables is unknown, then we use the Gaussian kernel density estimation to approximate the density function of the predictor variables. However, the bandwidth parameter needs to be estimated when `xdensity="kernel"` is used. The `wh()` function uses the bootstrap estimator to estimate the bandwidth of the Gaussian kernel density estimation. 
+When the distribution function of the predictor variables is unknown, Gaussian kernel density estimation is utilized to approximate the density function of the predictor variables. In such cases, the bandwidth parameter needs to be estimated, especially when `xdensity="kernel"` is specified. The `wh()` function uses the bootstrap estimator to estimate the bandwidth of the Gaussian kernel density estimation. 
 ```{r eval=TRUE, include=TRUE}
-set.seed(109)
-h_hat=wh(auto_y,auto_x,auto_d,wx=5,wy=0.1,wh_seq=seq(0.1,2,by=.1),space = "pdf",method="FM")
-#Bandwidth estimator for Gaussian kernel density estimation for central subspace
-h_hat$h.hat #we have the estimator as h_hat=0.1
+h_hat <- hyperPara(auto_y, auto_x, auto_d, wx = 5, wy = 0.1, range = seq(0.1, 2, by = .1), space = "pdf", method = "FM", hyper = "wh")
+# Bandwidth estimator for Gaussian kernel density estimation for central subspace
+h_hat$h.hat # we have the estimator as h_hat=0.1
 ```
+
+Ensure proper parameterization and selection of options for accurate estimation.
+
 
 ### 2.3: Estimate SDR subspaces
 
-We have described the estimation procedure of the tunning parameters in the Fourier method in Sections 2.1-2.2. Now, we are ready to estimate the SDR subspaces. Zhu and Zeng (2006) used the Fourier method to facilitate the estimation of the SDR subspaces when the predictors are following a multivariate normal distribution. However, when the predictor variables is following an elliptical distribution  or more generally when the distribution of the predictors is unknown, the predictors' distribution function is approximated by using the Gaussian kernel density estimation (Zeng and Zhu, 2010). The `itdr()` function can be used to estimate the SDR subspaces under `FM` method as follows.  Since the default setting of the `itdr()` function has `method="FM"`, It is optional to specify the method as "FM". 
+Having outlined the estimation procedure for tuning parameters in the Fourier method in Sections 2.1-2.2, we are now prepared to estimate the SDR subspaces. Zhu and Zeng (2006) utilized the Fourier method to facilitate the estimation of the SDR subspaces when the predictors follow a multivariate normal distribution. However, when the predictor variables follow an elliptical distribution  or, more generally, when the distribution of the predictors is unknown, the predictors' distribution function is approximated using Gaussian kernel density estimation (Zeng and Zhu, 2010). The `itdr()` function is employed to estimate the SDR subspaces under the `FM` method as follows.  Since the default setting of the `itdr()` function has `method="FM"`, it is optional to specify the method as "FM". 
 
 ```{r eval=TRUE, include=TRUE}
 library(itdr)
 data(automobile)
 head(automobile)
-set.seed(109)
-df=cbind(automobile[,c(26,10,11,12,13,14,17,19,20,21,22,23,24,25)])
-dff=as.matrix(df)
-automobi=dff[complete.cases(dff),]
-d=2; # Estimated value from Section 2.1
-wx=.14 # Estimated value from Section 2.2.1
-wy=.9  # Estimated value from Section 2.2.2
-wh=1.5  # Estimated value from Section 2.2.3
-p=13  # Estimated value from Section 2.3
-y=automobi[,1]
-x=automobi[,c(2:14)]
-xt=scale(x)
-#Distribution of the predictors is a normal distribution
-fit.F_CMS=itdr(y,xt,d,wx,wy,wh,space="pdf",xdensity = "normal",method="FM")
-round(fit.F_CMS$eta_hat,2)
+df <- cbind(automobile[, c(26, 10, 11, 12, 13, 14, 17, 19, 20, 21, 22, 23, 24, 25)])
+dff <- as.matrix(df)
+automobi <- dff[complete.cases(dff), ]
+d <- 2
+# Estimated value from Section 2.1
+wx <- .14 # Estimated value from Section 2.2.1
+wy <- .9 # Estimated value from Section 2.2.2
+wh <- 1.5 # Estimated value from Section 2.2.3
+p <- 13 # Estimated value from Section 2.3
+y <- automobi[, 1]
+x <- automobi[, c(2:14)]
+xt <- scale(x)
+# Distribution of the predictors is a normal distribution
+fit.F_CMS <- itdr(y, xt, d, wx, wy, wh, space = "pdf", xdensity = "normal", method = "FM")
+round(fit.F_CMS$eta_hat, 2)
 
-#Distribution of the predictors is a unknown (using kernel method)
-fit.F_CMS=itdr(y,xt,d,wx,wy,wh,space="pdf",xdensity = "kernel",method="FM")
-round(fit.F_CMS$eta_hat,2)
+# Distribution of the predictors is a unknown (using kernel method)
+fit.F_CMS <- itdr(y, xt, d, wx, wy, wh, space = "pdf", xdensity = "kernel", method = "FM")
+round(fit.F_CMS$eta_hat, 2)
 ```
 
 ## Chapter 3: Functions related with estimating the central mean subspace using Iterative Hessian Transformation (IHT)
 
-The `itdr()` function also can be used to estimate the central mean subspace in regression by using iterative Hessian transformation (IHT) method as described in the following R chunk on `Recumbent` dataset available in **itdr** package. Notice that the inputs are the method of estimation (`method=iht`), the response vector (y), design matrix of the predictors (x), and the dimension (d) of the CMS. The response and predictors are chosen as same as Cook and Li (2002).  
+The `itdr()` function extends its utility to estimating the central mean subspace in regression through the iterative Hessian transformation (IHT) method. The following R chunk illustrates the application of this method on the `Recumbent` dataset available within the **itdr** package. Notice that the function requires inputs such as the method of estimation (`method=iht`), the response vector (y), the design matrix of predictors (x), and the dimension (d) of the CMS. These choices for the response and predictors align with those of Cook and Li (2002).  
 
 ```{r eval=TRUE, include=TRUE}
 library(itdr)
-	data("Recumbent")
-	Recumbent.df=na.omit(Recumbent)
-	y=Recumbent.df$outcome
-	X1=log(Recumbent.df$ast)
-	X2=log(Recumbent.df$ck)
-	X3=log(Recumbent.df$urea)
-	p=3
-	x=matrix(c(X1,X2,X3),ncol=p)
-	d=2
-	fit.iht_CMS=itdr(y,x,2,method="iht")
-	fit.iht_CMS$eta_hat
+data("recumbent")
+recumbent.na <- na.omit(recumbent)
+y <- recumbent.na$outcome
+X1 <- log(recumbent.na$ast)
+X2 <- log(recumbent.na$ck)
+X3 <- log(recumbent.na$urea)
+p <- 3
+x <- matrix(c(X1, X2, X3), ncol = p)
+d <- 2
+fit.iht_CMS <- itdr(y, x, 2, method = "iht")
+fit.iht_CMS$eta_hat
 ```
 
-## Chapter 4: Functions related with estimating the central subspace in regression using Fourier transformation approach on inverse dimension reduction
+## Chapter 4: Estimating the Central Subspace in Regression using Fourier Transformation Approach on Inverse Dimension Reduction
 
-In this section, we demonstrate the functions in **itdr** package, which related to the Fourier transformation approach on inverse dimension reduction. In Section 4.1, we demonstrate the use of function to estimate the dimension of the central subspace using the Fourier transformation approach on inverse dimension reduction. The estimation of the CS is described in Section 4.2.
+In this section, we demonstrate the functions within the **itdr** package related to the Fourier transformation approach on inverse dimension reduction. Section 4.1 illustrates the use of function to estimate the dimension of the central subspace using the Fourier transformation approach on inverse dimension reduction, while Section 4.2 outlines the estimation process for the CS itself.
 
 ### 4.1: Estimating d
 
-The estimation of the dimension of the CS can be achieved using  `d.test()` function which gives outputs of three different p-values for three different test statistics; Weighted Chi-square test statistic (Weng and Yin, 2018), Scaled test statistic (Bentler and Xie, 2000), and Adjusted test statistic (Bentler and Xie, 2000). Suppose `m` is the candidate dimension of the CS to be tested `(H_0: d=m)`, then, the following R code shows the testing a candidate value `m` (<p) for dimension of the CS of the planning database (PDB).
+The estimation of the dimension of the CS can be achieved using the `d.test()` function which provides outputs of three different p-values for three different test statistics: the Weighted Chi-square test statistic (Weng and Yin, 2018), the Scaled test statistic (Bentler and Xie, 2000), and the Adjusted test statistic (Bentler and Xie, 2000). Suppose `m` is the candidate dimension of the CS to be tested `(H_0: d=m)`, then the following R code demonstrates testing a candidate value `m` (<p) for dimension of the CS of the planning database (PDB).
 
 ```{r eval=TRUE, include=TRUE}
 library(itdr)
-data(PDB)
-colnames(PDB)=NULL
-set.seed(123)
-p=15
-#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).
-df=PDB[,c(79,73,77,103,112,115,124,130,132,145,149,151,153,155,167,169)]
-dff=as.matrix(df)
-#remove the NA rows
-planingdb=dff[complete.cases(dff),]
+data(pdb)
+colnames(pdb) <- NULL
+p <- 15
+# select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).
+df <- pdb[, c(79, 73, 77, 103, 112, 115, 124, 130, 132, 145, 149, 151, 153, 155, 167, 169)]
+dff <- as.matrix(df)
+# remove the NA rows
+planingdb <- dff[complete.cases(dff), ]
 
-y=planingdb[,1] #n-dimensionl response vector
-x=planingdb[,c(2:(p+1))] # raw desing matrix
-x=x+0.5
+y <- planingdb[, 1] # n-dimensionl response vector
+x <- planingdb[, c(2:(p + 1))] # raw desing matrix
+x <- x + 0.5
 # desing matrix after tranformations
-xt=cbind(x[,1]^(.33),x[,2]^(.33),x[,3]^(.57),x[,4]^(.33),x[,5]^(.4),
-x[,6]^(.5),x[,7]^(.33),x[,8]^(.16),x[,9]^(.27),x[,10]^(.5),
-x[,11]^(.5),x[,12]^(.33),x[,13]^(.06),x[,14]^(.15),x[,15]^(.1))
-m=1
-W=sapply(50,rnorm)
-#run the hypothsis tests
-d.test(y,x,m)
+xt <- cbind(
+  x[, 1]^(.33), x[, 2]^(.33), x[, 3]^(.57), x[, 4]^(.33), x[, 5]^(.4),
+  x[, 6]^(.5), x[, 7]^(.33), x[, 8]^(.16), x[, 9]^(.27), x[, 10]^(.5),
+  x[, 11]^(.5), x[, 12]^(.33), x[, 13]^(.06), x[, 14]^(.15), x[, 15]^(.1)
+)
+m <- 1
+W <- sapply(50, rnorm)
+# run the hypothsis tests
+d.test(y, x, m)
 ```
 
 ### 4.2: Estimating central subspace
 
-After selecting the dimension of the CS as described in Section 4.1, then, an estimator for the CS can be obtained by using `invFM()` function. The following R chunk shows the use of `invFM()` to estimate the CS for planning database (PDB).
+After selecting the dimension of the CS as described in Section 4.1, then, an estimator for the CS can be obtained using the `itdr()` function. The following R chunk illustrates the use of the `itdr()` function to estimate the CS for planning database (PDB).
 
 ```{r eval=TRUE, include=TRUE}
 library(itdr)
-data(PDB)
-colnames(PDB)=NULL
-p=15
-#select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).
-df=PDB[,c(79,73,77,103,112,115,124,130,132,145,149,151,153,155,167,169)]
-dff=as.matrix(df)
-#remove the NA rows
-planingdb=dff[complete.cases(dff),]
+data(pdb)
+colnames(pdb) <- NULL
+p <- 15
+# select predictor vecotr (y) and response variables (X) according to Weng and Weng and Yin, (2018).
+df <- pdb[, c(79, 73, 77, 103, 112, 115, 124, 130, 132, 145, 149, 151, 153, 155, 167, 169)]
+dff <- as.matrix(df)
+# remove the NA rows
+planingdb <- dff[complete.cases(dff), ]
 
-y=planingdb[,1] #n-dimensionl response vector
-x=planingdb[,c(2:(p+1))] # raw desing matrix
-x=x+0.5
+y <- planingdb[, 1] # n-dimensionl response vector
+x <- planingdb[, c(2:(p + 1))] # raw desing matrix
+x <- x + 0.5
 # desing matrix after tranformations give in Weng and Yin, (2018).
-xt=cbind(x[,1]^(.33),x[,2]^(.33),x[,3]^(.57),x[,4]^(.33),x[,5]^(.4),
-x[,6]^(.5),x[,7]^(.33),x[,8]^(.16),x[,9]^(.27),x[,10]^(.5),
-x[,11]^(.5),x[,12]^(.33),x[,13]^(.06),x[,14]^(.15),x[,15]^(.1))
-set.seed(120)
-W=sapply(50,rnorm)
-d=1 # estimated dimension of the CS from Section 4.1
-betahat <-invFM(xt,y,d,W,F)$beta # estimated basis
-betahat
+xt <- cbind(
+  x[, 1]^(.33), x[, 2]^(.33), x[, 3]^(.57), x[, 4]^(.33), x[, 5]^(.4),
+  x[, 6]^(.5), x[, 7]^(.33), x[, 8]^(.16), x[, 9]^(.27), x[, 10]^(.5),
+  x[, 11]^(.5), x[, 12]^(.33), x[, 13]^(.06), x[, 14]^(.15), x[, 15]^(.1)
+)
 
-plot(y ~ xt %*% betahat, xlab = "First reduced predictor", 
-    ylab = "Health insurance coverage")
+d <- 1 # estimated dimension of the CS from Section 4.1
+invFM.fit <- itdr(y, x, d, m = 50, method = "invFM", x.scale = FALSE) # estimated basis
+betahat <- invFM.fit$eta_hat
+
+plot(y ~ xt %*% betahat,
+  xlab = "First reduced predictor",
+  ylab = "Health insurance coverage"
+)
 ```
+
+Ensure accurate specification of inputs and follow methodological guidelines for reliable estimation.
 
 ## Chapter 5: A Minimum Discrepancy Approach with Fourier Transfrom in Sufficient Dimension Reduciton
 
-In this section, we describe the `fm_xite()` function in **itdr** package that estimates the sufficient dimension reduction subspaces using five different approaches proposed by Weng and Yin (2022). The following R code chunk shows the estimation of sufficient dimension reduction subspace using `FT-DRIRE` approach for `prostate` dataset (Stamey et al. 1989).  
+In this section, we describe the `mitdr()` function within the **itdr** package, designed to estimates the sufficient dimension reduction subspaces in multivariate regression using five different approaches proposed by Weng and Yin (2022). Below is an example showing the estimation of sufficient dimension reduction subspace using `FT-DRIRE` approach for `prostate` dataset (Stamey et al. 1989).  
 
 ```{r eval=TRUE, include=TRUE}
 library(itdr)
-    set.seed(123)
-    data(prostate)
-    X=as.matrix(prostate[,1:8])
-    Y=matrix(prostate[,9], ncol = 1)
-    fit.ftire=fm_xire(Y,X,d=2,m = 10, method="FT-IRE")
-    betahat = fit.ftire$hbeta_xire
-    betahat
-    newx = X %*% betahat
-    plot(Y ~ newx[,1], xlab = "First reduced predictor", 
-    ylab = paste0(expression(log),'(antigen)', sep="") )
-    plot(Y ~ newx[,2], xlab = "Second reduced predictor", 
-    ylab = paste0(expression(log),'(antigen)', sep="") )
+data(prostate)
+X <- as.matrix(prostate[, 1:8])
+Y <- matrix(prostate[, 9], ncol = 1)
+fit.ftire <- mitdr(X, Y, d = 2, m = 10, method = "FT-IRE")
+betahat <- fit.ftire$Beta_hat
+betahat
+newx <- X %*% betahat
+plot(Y ~ newx[, 1],
+  xlab = "First reduced predictor",
+  ylab = paste0(expression(log), "(antigen)", sep = "")
+)
+plot(Y ~ newx[, 2],
+  xlab = "Second reduced predictor",
+  ylab = paste0(expression(log), "(antigen)", sep = "")
+)
 ```
 
 
 ## Chapter 6: Fourier Transform Sparse Inverse Regression Estimators for Sufficient Variable Selection
 
-In this section, we describe the `admmft()` function in **itdr** package that selects the sufficient variables using Fourier transformation method (Weng, 2022). The following R chunk demonstrate the sufficient variable selection for the `prostate` dataset in **itdr** package. In this function, we use `lambda=0.5`. However, if it is not given, then cross validation method is used to choose the optimal `labmda` value.    
+In this section, we introduce the `mitdr()` function within the **itdr** package, designed for selecting the sufficient variables in multivariate regression using Fourier transformation method (Weng, 2022). The following R chunk demonstrates the sufficient variable selection for the `prostate` dataset within the **itdr** package. In this function, we set `lambda=0.5`. However, if lambda is not specified, the cross validation method is utilized to determine the optimal `labmda` value.    
 
 ```{r eval=TRUE, include=TRUE}
-  data(raman)
-    Y=as.matrix(Raman[,c(1100)]) ## percentage of total fat content
-    X=as.matrix(Raman[c(2:501)]) ## first 500 wavelength variables
-    out = admmft(X,Y,d = 1, m = 30, lambda = 0.5, sparse.cov=T, scale.X=T)
-    estbeta = out$B
-    estbeta
-    plot(Y ~ X %*% estbeta, xlab = "First reduced predictor", 
-    ylab = "Percentage of total fat")
+data(raman)
+Y <- as.matrix(raman[, c(1100)]) ## percentage of total fat content
+X <- as.matrix(raman[c(2:501)]) ## first 500 wavelength variables
+out <- mitdr(X, Y, d = 1, m = 30, method = "admmft", lambda = 0.5, sparse.cov = TRUE, x.scale = TRUE)
+estbeta <- out$Beta_hat
+estbeta
+plot(Y ~ X %*% estbeta,
+  xlab = "First reduced predictor",
+  ylab = "Percentage of total fat"
+)
 ```
 
 
 
 ## Acknowledgment
 
-The codes for the Fourier transformation and the convolution transformation methods are adapted from the codes provided by Zhu and Zeng (2006). Moreover, those for the elliptically contoured distributed variables and the kernel density estimation methods are essentially a modification of the program provided by Zeng and Zhu (2010). The code for Fourier transforms approach for the inverse dimension reduction method is adapted from the code provided by Weng and Yin (2018).
+The codes for the Fourier transformation and the convolution transformation methods have been adapted from the codes provided by Zhu and Zeng (2006). Moreover, the methods for handling elliptically contoured distributed variables and kernel density estimation are essentially modifications of the programs originally provided by Zeng and Zhu (2010). Furthermore, the code for Fourier transforms approach for the inverse dimension reduction method has been adapted from the code provided by Weng and Yin (2018).
 
 ## References 
 
